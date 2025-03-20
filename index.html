@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infegy Topic Analysis Dashboard</title>
+    <script src="https://d3js.org/d3.v6.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0 20px 20px 20px;
+            background-color: #f9f9f9;
+            color: #223354;
+        }
+        h1, h2, h3 {
+            color: #223354;
+            margin-bottom: 10px;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #22aaff;
+            text-align: left;
+        }
+        .circle-packing {
+            margin: 20px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e8eaf2;
+        }
+        .narrative-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .narrative {
+            flex: 1 1 calc(50% - 30px);
+            min-width: 350px;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e8eaf2;
+            text-align: left;
+            transition: box-shadow 0.3s ease;
+        }
+        .narrative h2 {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #223354;
+            margin: 0 0 20px 0;
+            letter-spacing: 0.3px;
+        }
+        .narrative h3 {
+            font-size: 1.1em;
+            font-weight: 500;
+            color: #445566;
+            margin: 25px 0 15px 0;
+        }
+        .key-terms, .personas {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-start;
+        }
+        .key-terms li, .personas li {
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        .key-terms li.positive {
+            background: #88dd11;
+            color: white;
+        }
+        .key-terms li.negative {
+            background: #ff3366;
+            color: white;
+        }
+        .personas li.male {
+            background: #22aaff;
+            color: white;
+        }
+        .personas li.female {
+            background: #ee44ee;
+            color: white;
+        }
+        #my_dataviz {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .tooltip {
+            position: absolute;
+            background-color: white;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            pointer-events: none;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .narrative:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        .narrative.highlighted {
+            border-color: #22aaff;
+            box-shadow: 0 2px 12px rgba(34, 170, 255, 0.1);
+        }
+        .section-header {
+            position: relative;
+            padding: 15px 0 10px 0;
+            margin: 15px 0;
+            border-bottom: 2px solid #e8eaf2;
+            background: none;
+            border-left: none;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            color: #223354;
+            font-size: 1.6em;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: #22aaff;
+        }
+
+        #introduction, #conclusion {
+            padding: 0;
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #445566;
+        }
+
+        #introduction p, #conclusion p {
+            margin: 15px 0;
+        }
+
+        .highlight-text {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            margin: 0 0 30px 0;
+            box-shadow: none;
+        }
+
+        .narrative-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 15px;
+            margin: 0 0 25px 0;
+            font-size: 0.9em;
+            position: relative;
+        }
+        .stat-item {
+            position: relative;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: #445566;
+            font-weight: 500;
+            background: white;
+            border: 1px solid #e8eaf2;
+            min-width: 140px;
+            flex: 1;
+            max-width: 200px;
+        }
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            border-radius: 4px 0 0 4px;
+        }
+        .stat-label {
+            font-size: 0.85em;
+            color: #667788;
+            margin-bottom: 4px;
+        }
+        .stat-value {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #223354;
+        }
+        .sentiment-stat::before {
+            background: linear-gradient(to bottom, #88dd11, #ff3366);
+        }
+        .distribution-stat::before {
+            background: #22aaff;
+        }
+        .volume-stat::before {
+            background: #22dddd;
+        }
+        .language-stat::before {
+            background: #88dd11;
+        }
+        .circle-label {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            fill: #223354;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            pointer-events: none;
+            user-select: none;
+        }
+        .circle-label tspan {
+            text-anchor: middle;
+        }
+        .metadata-stats {
+            display: flex;
+            justify-content: flex-start;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            color: #445566;
+        }
+        .metadata-item {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            border-left: 2px solid #22aaff;
+            padding-left: 15px;
+            flex: 0 1 auto;
+            box-shadow: none;
+        }
+        .metadata-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #223354;
+            font-size: 1.1em;
+            letter-spacing: 0.3px;
+        }
+        .metadata-value {
+            font-size: 1.05em;
+            color: #445566;
+            line-height: 1.4;
+        }
+        .color-legend {
+            margin: 15px 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: none;
+            border: none;
+        }
+        .legend-section {
+            flex: 1;
+            min-width: 250px;
+            margin: 0;
+        }
+        .legend-title {
+            font-weight: 600;
+            color: #223354;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+        .legend-items {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            color: #445566;
+            padding: 4px 0;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        .viz-instructions {
+            color: #445566;
+            font-size: 0.9em;
+            text-align: center;
+            margin: 15px 0 5px 0;
+            line-height: 1.4;
+        }
+        .viz-instructions strong {
+            color: #223354;
+        }
+        .viz-instructions span {
+            display: inline-block;
+            margin: 0 8px;
+        }
+        .app-header {
+            background: white;
+            padding: 24px 40px;
+            border-bottom: 1px solid #e8eaf2;
+            margin: 0 -20px 30px -20px;
+            display: flex;
+            align-items: center;
+            min-height: 80px;
+        }
+        
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .logo {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
+        
+        .product-name {
+            padding-left: 28px;
+            border-left: 1px solid #e8eaf2;
+            color: #223354;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        
+        .demo-badge {
+            background: linear-gradient(135deg, #22aaff 0%, #88ccff 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.85em;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1 {
+            padding: 0 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .example-posts {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .example-post {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            color: #445566;
+            font-size: 0.95em;
+            line-height: 1.5;
+            border-left: 3px solid #22aaff;
+        }
+
+        .example-post:hover {
+            background: #f3f4f6;
+        }
+
+        .example-post p {
+            margin: 0;
+        }
+
+        .example-post em {
+            color: #223354;
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .example-post strong {
+            color: #223354;
+            font-weight: 600;
+        }
+
+        .ridgeline-path {
+            fill-opacity: 0.6;
+            stroke: #fff;
+            stroke-width: 0.5;
+            cursor: pointer;
+            transition: fill-opacity 0.2s;
+        }
+
+        .ridgeline-path:hover {
+            fill-opacity: 0.8;
+        }
+
+        .ridgeline-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            fill: #445566;
+        }
+
+        .ridgeline-plot {
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+        }
+
+        .highlight-text {
+            margin-top: 40px;
+        }
+
+        .date-line {
+            pointer-events: none;
+        }
+        .date-label {
+            pointer-events: none;
+            font-family: 'Roboto', sans-serif;
+        }
+        .tooltip {
+            max-height: 200px;
+            overflow-y: auto;
+            padding: 10px;
+            background: white;
+            border: 1px solid #e8eaf2;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .viz-title {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #223354;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e8eaf2;
+        }
+        .page-layout {
+            display: flex;
+            gap: 30px;
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .toc-container {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            min-width: 250px;
+            max-width: 250px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            overflow-y: auto;
+        }
+
+        .toc-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #223354;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8eaf2;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc-item {
+            margin-bottom: 10px;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 8px 12px;
+            color: #445566;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            font-size: 0.9em;
+        }
+
+        .toc-link:hover {
+            background: #f8f9fa;
+            color: #22aaff;
+        }
+
+        .toc-link.active {
+            background: #e8f5ff;
+            color: #22aaff;
+            font-weight: 500;
+        }
+
+        .narrative-title {
+            font-size: 0.85em;
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 1024px) {
+            .page-layout {
+                flex-direction: column;
+            }
+
+            .toc-container {
+                position: relative;
+                top: 0;
+                height: auto;
+                max-width: none;
+                margin-bottom: 20px;
+            }
+
+            .toc-list {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .toc-item {
+                margin-bottom: 0;
+            }
+
+            .narrative-title {
+                padding-left: 0;
+                margin-top: 0;
+            }
+        }
+
+        .narrative-submenu {
+            margin-top: 5px;
+        }
+
+        .narrative-link {
+            font-size: 0.85em;
+            padding: 6px 12px;
+        }
+
+        .toc-link.narrative-link {
+            color: #445566;
+        }
+
+        .toc-link.narrative-link:hover {
+            color: #22aaff;
+        }
+
+        .toc-link.narrative-link.active {
+            background: #e8f5ff;
+            color: #22aaff;
+        }
+
+        @media (max-width: 1024px) {
+            .narrative-submenu {
+                padding-left: 0 !important;
+                margin: 10px 0;
+            }
+            
+            .narrative-link {
+                padding: 6px 10px;
+            }
+        }
+
+        .viz-title[style*="margin-top"] {
+            margin-top: 20px !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="brand-section">
+            <img src="https://starscape.infegy.com/img/Infegy_Logo_FullColor.svg" alt="Infegy" class="logo">
+            <div class="product-name">Topic Discovery Suite</div>
+        </div>
+    </header>
+    
+    <div class="page-layout">
+        <nav class="toc-container">
+            <div class="toc-title">Contents</div>
+            <ul class="toc-list" id="toc"></ul>
+        </nav>
+        
+    <div class="container">
+        <h1 id="title"></h1>
+            
+            <div class="metadata-stats">
+                <div class="metadata-item">
+                    <div class="metadata-label">Analysis Period</div>
+                    <div id="timeRange" class="metadata-value"></div>
+                </div>
+                <div class="metadata-item">
+                    <div class="metadata-label">Sample Size</div>
+                    <div id="totalCount" class="metadata-value"></div>
+                </div>
+            </div>
+
+            <div id="introduction" class="highlight-text"></div>
+            
+            <div class="section-header">
+                <h2>Overview and Topic Distribution</h2>
+            </div>
+        <div class="circle-packing">
+                <div class="viz-title">Topic Distribution Overview</div>
+                <div class="viz-instructions">
+                    <strong>Circle size</strong> represents topic distribution percentage
+                    <span>•</span>
+                    <strong>Click any circle</strong> to jump to its detailed analysis
+                </div>
+                <div id="my_dataviz"></div>
+                
+                <div class="viz-title" style="margin-top: 40px;">Volume Trends Over Time</div>
+                <div id="ridgeline-plot"></div>
+            </div>
+
+            <div class="section-header">
+                <h2>Color Guide</h2>
+            </div>      
+            <div class="color-legend" style="margin-bottom: 40px;">
+                <div class="legend-section" style="min-width: 200px;">
+                    <div class="legend-title">Topic Sentiment</div>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #88dd11"></span>
+                            Positive
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #ff3366"></span>
+                            Negative
+                        </div>
+                    </div>
+                </div>
+                <div class="legend-section" style="min-width: 200px;">
+                    <div class="legend-title">Persona Demographics</div>
+                    <div class="legend-items">
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #22aaff"></span>
+                            Male-Majority Group
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-color" style="background: #ee44ee"></span>
+                            Female-Majority Group
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Narrative Analysis</h2>
+            </div>
+            <div class="section-description" style="margin: 0 0 30px 0; color: #445566; line-height: 1.6; font-size: 1.1em;">
+                This section breaks down each identified narrative in detail. For each narrative, you'll find:
+                <ul style="margin: 10px 0 0 20px; padding: 0;">
+                    <li>Key statistics including sentiment score, topic distribution, total post volume, and primary language</li>
+                    <li>Most relevant topics and terms associated with the narrative</li>
+                    <li>Detailed description of the narrative's content and significance</li>
+                    <li>Representative example posts that typify the narrative</li>
+                    <li>Demographic information about the personas discussing these topics</li>
+                </ul>
+                Click on any circle in the Topic Distribution visualization above to jump directly to its corresponding narrative analysis.
+            </div>
+            <div class="narrative-container" id="narratives"></div>
+            
+            <div class="section-header">
+                <h2>Key Findings</h2>
+            </div>
+            <div id="conclusion" class="highlight-text"></div>
+        </div>
+    </div>
+
+    <script>
+        function parseMarkdown(text) {
+            if (!text) return '';  // Handle null/undefined text
+            return text.replace(/\n/g, '<br>')
+                       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                       .replace(/\*(.*?)\*/g, '<em>$1</em>');
+        }
+
+        function createLineGraph(data) {
+            const margin = {top: 30, right: 40, bottom: 120, left: 100};
+            const width = 800 - margin.left - margin.right;
+            const height = 400 - margin.top - margin.bottom;
+            
+            d3.select("#ridgeline-plot").html("");
+            
+            const svg = d3.select("#ridgeline-plot")
+                .append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", `translate(${margin.left},${margin.top})`);
+
+            // Prepare the data
+            const narratives = data.output.narratives.map(n => ({
+                ...n,
+                volume_data: n.volume_data.map(d => ({
+                    date: new Date(d[0]),
+                    value: d[1]
+                }))
+            }));
+            
+            // Create scales
+            const x = d3.scaleTime()
+                .domain(d3.extent(narratives[0].volume_data, d => d.date))
+                .range([0, width]);
+            
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(narratives, n => d3.max(n.volume_data, d => d.value))])
+                .range([height, 0]);
+
+            // Add X axis
+            svg.append("g")
+                .attr("transform", `translate(0,${height})`)
+                .call(d3.axisBottom(x)
+                    .ticks(7)
+                    .tickFormat(d3.timeFormat("%b %d")));
+
+            // Add Y axis
+            svg.append("g")
+                .call(d3.axisLeft(y)
+                    .ticks(5)
+                    .tickFormat(d => d3.format(",.0f")(d)));
+
+            // Update Y axis label position
+            svg.append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -margin.left + 20) // Move label further left
+                .attr("x", -(height / 2))
+                .attr("dy", "1em")
+                .style("text-anchor", "middle")
+                .style("fill", "#445566")
+                .style("font-size", "12px")
+                .text("Post Volume");
+
+            // Use the site's color scheme
+            const colors = [
+                '#22aaff', // Primary blue
+                '#88ccff', // Light blue
+                '#88dd11', // Green
+                '#22dddd', // Teal
+                '#ff3366', // Red
+                '#ee44ee'  // Pink
+            ];
+
+            // Create line generator
+            const line = d3.line()
+                .x(d => x(d.date))
+                .y(d => y(d.value))
+                .curve(d3.curveMonotoneX);
+
+            // Add the lines
+            const paths = svg.selectAll(".line")
+                .data(narratives)
+                .enter()
+                .append("path")
+                .attr("class", "line")
+                .attr("d", d => line(d.volume_data))
+                .style("fill", "none")
+                .style("stroke", (d, i) => colors[i % colors.length])
+                .style("stroke-width", 2)
+                .style("opacity", 0.7);
+
+            // Add the overlay for mouse tracking (add this before using it)
+            const overlay = svg.append("rect")
+                .attr("class", "overlay")
+                .attr("width", width)
+                .attr("height", height)
+                .style("fill", "none")
+                .style("pointer-events", "all");
+
+            // Add the vertical line and date label
+            const dateLine = svg.append("line")
+                .attr("class", "date-line")
+                .style("stroke", "#223354")
+                .style("stroke-width", "1px")
+                .style("stroke-dasharray", "3,3")
+                .style("opacity", 0);
+
+            const dateLabel = svg.append("text")
+                .attr("class", "date-label")
+                .attr("text-anchor", "middle")
+                .attr("y", -10)
+                .style("fill", "#445566")
+                .style("font-size", "12px")
+                .style("opacity", 0);
+
+            // Mouse handling
+            overlay
+                .on("mouseover", function() {
+                    dateLine.style("opacity", 1);
+                    dateLabel.style("opacity", 1);
+                })
+                .on("mouseout", function() {
+                    dateLine.style("opacity", 0);
+                    dateLabel.style("opacity", 0);
+                })
+                .on("mousemove", function(event) {
+                    const [mouseX] = d3.pointer(event);
+                    const date = x.invert(mouseX);
+
+                    // Update date line
+                    dateLine
+                        .attr("x1", mouseX)
+                        .attr("x2", mouseX)
+                        .attr("y1", 0)
+                        .attr("y2", height);
+
+                    // Update date label
+                    dateLabel
+                        .attr("x", mouseX)
+                        .attr("y", -10)
+                        .text(d3.timeFormat("%b %d, %Y")(date));
+                });
+
+            // Update legend text styling and positioning
+            const legendWidth = width;
+            const itemsPerRow = 3;
+            const itemWidth = legendWidth / itemsPerRow;
+            const legendItemHeight = 15;    // Reduced from 20
+            const legendPadding = 10;       // Reduced from 15
+            
+            const legend = svg.append("g")
+                .attr("class", "legend")
+                .attr("transform", `translate(0, ${height + 25})`); // Reduced from 30
+
+            narratives.forEach((narrative, i) => {
+                const row = Math.floor(i / itemsPerRow);
+                const col = i % itemsPerRow;
+                
+                const legendItem = legend.append("g")
+                    .attr("transform", `translate(${col * itemWidth}, ${row * (legendItemHeight + 3)})`); // Reduced spacing between rows from 5 to 3
+
+                legendItem.append("line")
+                    .attr("x1", 0)
+                    .attr("x2", 20)         // Increased line length
+                    .attr("y1", 7)
+                    .attr("y2", 7)
+                    .style("stroke", colors[i % colors.length])
+                    .style("stroke-width", 2);
+
+                legendItem.append("text")
+                    .attr("x", 25)          // Increased text offset
+                    .attr("y", 7)
+                    .attr("dy", ".35em")
+                    .style("fill", "#445566")
+                    .style("font-size", "12px")  // Increased font size
+                    .text(narrative.title);
+
+                // Handle text truncation
+                const text = legendItem.select("text");
+                const maxTextWidth = itemWidth - 35;
+                let title = narrative.title;
+                while (text.node().getComputedTextLength() > maxTextWidth && title.length > 0) {
+                    title = title.slice(0, -1);
+                    text.text(title + '...');
+                }
+            });
+
+            // Update SVG height calculation to be more compact
+            const totalRows = Math.ceil(narratives.length / itemsPerRow);
+            const legendHeight = (totalRows * (legendItemHeight + 3)) + legendPadding; // Adjusted calculation
+            const newHeight = height + margin.top + margin.bottom + legendHeight;
+
+            d3.select("#ridgeline-plot svg")
+                .attr("height", newHeight);
+        }
+
+        function getLanguageName(code) {
+            const languages = {
+                'en': 'English',
+                'es': 'Spanish',
+                'fr': 'French',
+                'de': 'German',
+                'it': 'Italian',
+                'pt': 'Portuguese',
+                'ru': 'Russian',
+                'ja': 'Japanese',
+                'ko': 'Korean',
+                'zh': 'Chinese',
+                'ar': 'Arabic',
+                'hi': 'Hindi',
+                'tr': 'Turkish',
+                'nl': 'Dutch',
+                'pl': 'Polish',
+                'vi': 'Vietnamese',
+                'th': 'Thai',
+                'id': 'Indonesian'
+            };
+            return languages[code] || code.toUpperCase();
+        }
+
+        function initializeTableOfContents() {
+            const toc = document.getElementById('toc');
+            const sections = [
+                { id: 'introduction', label: 'Introduction' },
+                { id: 'my_dataviz', label: 'Topic Distribution' },
+                { id: 'ridgeline-plot', label: 'Volume Trends' },
+                { type: 'narratives', label: 'Narrative Analysis' }
+            ];
+
+            sections.forEach(section => {
+                const li = document.createElement('li');
+                li.className = 'toc-item';
+                
+                if (section.type === 'narratives') {
+                    li.innerHTML = `
+                        <a href="#narratives" class="toc-link">${section.label}</a>
+                        <ul class="narrative-submenu" style="list-style: none; padding-left: 20px; margin: 5px 0;"></ul>
+                    `;
+                } else {
+                    li.innerHTML = `<a href="#${section.id}" class="toc-link">${section.label}</a>`;
+                }
+                toc.appendChild(li);
+            });
+
+            // Add conclusion after narratives
+            const conclusionItem = document.createElement('li');
+            conclusionItem.className = 'toc-item';
+            conclusionItem.innerHTML = `<a href="#conclusion" class="toc-link">Key Findings</a>`;
+            toc.appendChild(conclusionItem);
+
+            // Add narrative titles to submenu
+            const submenu = document.querySelector('.narrative-submenu');
+            document.querySelectorAll('.narrative').forEach(narrative => {
+                const title = narrative.querySelector('h2').textContent;
+                const id = narrative.id;
+                const li = document.createElement('li');
+                li.className = 'toc-item';
+                li.innerHTML = `<a href="#${id}" class="toc-link narrative-link">${title}</a>`;
+                submenu.appendChild(li);
+            });
+
+            // Update the observer to handle narrative sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const id = entry.target.getAttribute('id');
+                    const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+                    
+                    if (tocLink) {
+                        if (entry.isIntersecting) {
+                            // First, remove active class from all links
+                            document.querySelectorAll('.toc-link').forEach(link => {
+                                link.classList.remove('active');
+                            });
+                            
+                            // Add active class to current link
+                            tocLink.classList.add('active');
+                            
+                            // If it's a narrative, also highlight the parent section
+                            if (tocLink.classList.contains('narrative-link')) {
+                                document.querySelector('.toc-link[href="#narratives"]').classList.add('active');
+                            }
+                        } else {
+                            // When section is no longer intersecting
+                            tocLink.classList.remove('active');
+                            
+                            // Find the currently most visible section
+                            const visibleSections = Array.from(document.querySelectorAll('.narrative, #title, #introduction, #my_dataviz, #ridgeline-plot, #conclusion'))
+                                .filter(el => {
+                                    const rect = el.getBoundingClientRect();
+                                    return rect.top < window.innerHeight * 0.5 && rect.bottom > 0;
+                                });
+                            
+                            if (visibleSections.length > 0) {
+                                const mostVisible = visibleSections[0];
+                                const mostVisibleId = mostVisible.getAttribute('id');
+                                const mostVisibleLink = document.querySelector(`.toc-link[href="#${mostVisibleId}"]`);
+                                
+                                if (mostVisibleLink) {
+                                    mostVisibleLink.classList.add('active');
+                                    
+                                    // If it's a narrative, highlight the parent section
+                                    if (mostVisibleLink.classList.contains('narrative-link')) {
+                                        document.querySelector('.toc-link[href="#narratives"]').classList.add('active');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }, { 
+                threshold: 0.2,
+                rootMargin: '-20% 0px -60% 0px'
+            });
+
+            // Observe all sections including narratives
+            document.querySelectorAll('.narrative, #title, #introduction, #my_dataviz, #ridgeline-plot, #conclusion').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Smooth scroll to sections
+            document.querySelectorAll('.toc-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').slice(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+        }
+
+        fetch('infegy_summary.json')
+            .then(response => response.json())
+            .then(jsonData => {
+                document.getElementById("title").textContent = jsonData.output.title;
+                
+                // Format and display metadata
+                const formatDate = (dateString) => {
+                    const date = new Date(dateString);
+                    return date.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
+                        hour: 'numeric',
+                        minute: '2-digit'
+                    });
+                };
+                
+                const startDate = formatDate(jsonData.output.min_timestamp);
+                const endDate = formatDate(jsonData.output.max_timestamp);
+                document.getElementById("timeRange").textContent = `${startDate} → ${endDate}`;
+                document.getElementById("totalCount").textContent = 
+                    new Intl.NumberFormat('en-US').format(jsonData.output.total_count) + " posts";
+                
+                // Add introduction and conclusion text
+                document.getElementById("introduction").innerHTML = `
+                    <div class="section-header">
+                        <h2>Introduction</h2>
+                    </div>
+                    ${parseMarkdown(jsonData.output.introduction)}
+                `;
+                document.getElementById("conclusion").innerHTML = parseMarkdown(jsonData.output.conclusion);
+
+                const narrativesContainer = document.getElementById("narratives");
+
+                jsonData.output.narratives.forEach(narrative => {
+                    let narrativeDiv = document.createElement("div");
+                    narrativeDiv.classList.add("narrative");
+                    narrativeDiv.id = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
+
+                    let h2 = document.createElement("h2");
+                    h2.textContent = narrative.title;
+
+                    let statsDiv = document.createElement("div");
+                    statsDiv.classList.add("narrative-stats");
+
+                    // Calculate total posts by summing est_total_count from all key terms
+                    const totalPosts = narrative.key_terms.reduce((sum, term) => {
+                        return sum + (term.est_total_count || 0);
+                    }, 0);
+
+                    statsDiv.innerHTML = `
+                        <div class="stat-item sentiment-stat">
+                            <div class="stat-label">Sentiment Score</div>
+                            <div class="stat-value">${(narrative.positivity * 100).toFixed(1)}%</div>
+                        </div>
+                        <div class="stat-item distribution-stat">
+                            <div class="stat-label">Topic Distribution</div>
+                            <div class="stat-value">${(narrative.distribution * 100).toFixed(1)}%</div>
+                        </div>
+                        <div class="stat-item volume-stat">
+                            <div class="stat-label">Total Posts</div>
+                            <div class="stat-value">${new Intl.NumberFormat('en-US').format(totalPosts)}</div>
+                        </div>
+                        <div class="stat-item language-stat">
+                            <div class="stat-label">Language</div>
+                            <div class="stat-value">${getLanguageName(narrative.language)}</div>
+                        </div>`;
+
+                    let keyTermsContainer = document.createElement("div");
+                    keyTermsContainer.innerHTML = "<h3>Key Topics:</h3>";
+                    let ulKeyTerms = document.createElement("ul");
+                    ulKeyTerms.classList.add("key-terms");
+
+                    narrative.key_terms.slice(0, 10).forEach(term => {
+                        let li = document.createElement("li");
+                        li.textContent = term.label;
+                        li.classList.add(term.positivity >= 0.5 ? "positive" : "negative");
+                        ulKeyTerms.appendChild(li);
+                    });
+                    keyTermsContainer.appendChild(ulKeyTerms);
+
+                    let descriptionContainer = document.createElement("div");
+                    descriptionContainer.innerHTML = `<p>${parseMarkdown(narrative.description)}</p>`;
+
+                    // Add new example posts section
+                    let examplesContainer = document.createElement("div");
+                    if (narrative.examples && narrative.examples.length > 0) {
+                        examplesContainer.innerHTML = "<h3>Example Posts:</h3>";
+                        let examplesList = document.createElement("div");
+                        examplesList.classList.add("example-posts");
+                        
+                        // Ensure we're getting the examples array correctly
+                        const examples = Array.isArray(narrative.examples) ? narrative.examples : [narrative.examples];
+                        
+                        examples.forEach(example => {
+                            let exampleDiv = document.createElement("div");
+                            exampleDiv.classList.add("example-post");
+                            // Handle both string and object examples
+                            const exampleText = typeof example === 'object' ? example.text || example.content : example;
+                            exampleDiv.innerHTML = parseMarkdown(exampleText);
+                            examplesList.appendChild(exampleDiv);
+                        });
+                        
+                        examplesContainer.appendChild(examplesList);
+                    }
+
+                    let personasContainer = document.createElement("div");
+                    personasContainer.innerHTML = "<h3>Personas:</h3>";
+                    let ulPersonas = document.createElement("ul");
+                    ulPersonas.classList.add("personas");
+
+                    narrative.personas.slice(0, 10).forEach(persona => {
+                        let li = document.createElement("li");
+                        li.textContent = persona.title;
+                        li.classList.add(persona.gender.m > persona.gender.f ? "male" : "female");
+                        ulPersonas.appendChild(li);
+                    });
+                    personasContainer.appendChild(ulPersonas);
+
+                    // Add the examples container before personas
+                    narrativeDiv.appendChild(h2);
+                    narrativeDiv.appendChild(statsDiv);
+                    narrativeDiv.appendChild(keyTermsContainer);
+                    narrativeDiv.appendChild(descriptionContainer);
+                    if (examplesContainer.children.length > 0) {
+                        narrativeDiv.appendChild(examplesContainer);
+                    }
+                    narrativeDiv.appendChild(personasContainer);
+                    narrativesContainer.appendChild(narrativeDiv);
+                });
+
+                document.getElementById("conclusion").innerHTML = parseMarkdown(jsonData.output.conclusion);
+
+                // Create circle packing visualization
+                const width = 800, height = 300;
+                const svg = d3.select("#my_dataviz")
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+                // Filter out narratives with very small distribution values
+                let narratives = jsonData.output.narratives.filter(d => d.distribution > 0.001);
+
+                // Color palette for different sentiment ranges
+                const color = d3.scaleOrdinal()
+                    .range([
+                        '#22aaff', // Primary blue
+                        '#88ccff', // Light blue
+                        '#88dd11', // Green
+                        '#22dddd', // Teal
+                        '#ff3366', // Red
+                        '#ee44ee'  // Pink
+                    ]);
+
+                // Size scale for narratives
+                const size = d3.scaleLinear()
+                    .domain([0, d3.max(narratives, d => d.distribution)])
+                    .range([10, 100]);
+
+                // Create tooltip
+                // const Tooltip = d3.select("#my_dataviz")
+                //     .append("div")
+                //     .style("opacity", 0)
+                //     .attr("class", "tooltip");
+
+                // Tooltip event handlers
+                const mouseover = function(event, d) {}
+                const mousemove = function(event, d) {}
+                const mouseleave = function(event, d) {}
+
+                // Create a group for each node (circle + text)
+                const node = svg.append("g")
+                    .selectAll("g")
+                    .data(narratives)
+                    .join("g");
+
+                // Add circles to each group
+                const circles = node.append("circle")
+                    .attr("r", d => size(d.distribution))
+                    .attr("cx", 0)
+                    .attr("cy", 0)
+                    .style("fill", d => color(d.positivity))
+                    .style("fill-opacity", 0.85)
+                    .attr("stroke", "white")
+                    .style("stroke-width", 2)
+                    .on("mouseover", mouseover)
+                    .on("mousemove", mousemove)
+                    .on("mouseleave", mouseleave)
+                    .on("click", (event, d) => {
+                        const narrativeId = `narrative-${d.title.replace(/\s+/g, '-').toLowerCase()}`;
+                        const narrativeDiv = document.getElementById(narrativeId);
+                        
+                        document.querySelectorAll('.narrative').forEach(div => {
+                            div.classList.remove('highlighted');
+                        });
+                        
+                        if (narrativeDiv) {
+                            narrativeDiv.classList.add('highlighted');
+                            narrativeDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
+
+                // Add text labels to each group
+                const labels = node.append("text")
+                    .attr("class", "circle-label")
+                    .each(function(d) {
+                        const radius = size(d.distribution);
+                        // Scale font size based on circle radius
+                        const fontSize = Math.max(10, Math.min(14, radius / 4));
+                        const lineHeight = fontSize * 1.2;
+                        const maxLines = Math.floor((radius * 1.6) / lineHeight);
+                        const maxWidth = radius * 1.6;
+                        
+                        let words = d.title.split(/\s+/);
+                        let lines = [];
+                        let currentLine = [];
+                        let currentWidth = 0;
+                        
+                        words.forEach(word => {
+                            const wordWidth = word.length * (fontSize * 0.6);
+                            
+                            if (currentWidth + wordWidth < maxWidth) {
+                                currentLine.push(word);
+                                currentWidth += wordWidth + (fontSize * 0.6);
+                            } else {
+                                if (currentLine.length > 0) {
+                                    lines.push(currentLine.join(' '));
+                                }
+                                currentLine = [word];
+                                currentWidth = wordWidth;
+                            }
+                        });
+                        
+                        if (currentLine.length > 0) {
+                            lines.push(currentLine.join(' '));
+                        }
+                        
+                        // Limit number of lines
+                        lines = lines.slice(0, maxLines);
+                        
+                        // Calculate vertical position for centering
+                        const totalHeight = lines.length * lineHeight;
+                        const startY = -(totalHeight / 2) + (lineHeight / 2);
+                        
+                        // Create tspan elements for each line
+                        const text = d3.select(this);
+                        lines.forEach((line, i) => {
+                            text.append("tspan")
+                                .attr("x", 0)
+                                .attr("y", startY + (i * lineHeight))
+                                .style("font-size", `${fontSize}px`)
+                                .text(line);
+                        });
+                    });
+
+                // Create the simulation first
+                const simulation = d3.forceSimulation()
+                    .force("center", d3.forceCenter().x(width / 2).y(height / 2).strength(0.3))
+                    .force("charge", d3.forceManyBody()
+                        .strength(d => -10))
+                    .force("gravity", d3.forceManyBody()
+                        .strength(100))
+                    .force("collide", d3.forceCollide()
+                        .radius(d => size(d.distribution) + 1)
+                        .strength(0.8)
+                        .iterations(4))
+                    .velocityDecay(0.4)
+                    .alphaTarget(0.01)
+                    .alphaMin(0.001)
+                    .alphaDecay(0.04);
+
+                // Then update the tick function to properly position both circles and labels
+                simulation
+                    .nodes(narratives)
+                    .on("tick", function() {
+                        node.attr("transform", d => {
+                            const r = size(d.distribution);
+                            d.x = Math.max(r, Math.min(width - r, d.x));
+                            d.y = Math.max(r, Math.min(height - r, d.y));
+                            return `translate(${d.x},${d.y})`;
+                        });
+                    });
+
+                // Update the drag functions
+                function dragstarted(event, d) {
+                    if (!event.active) simulation.alphaTarget(0.3).restart();
+                    d.fx = d.x;
+                    d.fy = d.y;
+                    // Show tooltip when starting drag
+                    // Tooltip.style("opacity", 1);
+                }
+
+                function dragged(event, d) {
+                    d.fx = event.x;
+                    d.fy = event.y;
+                    // Tooltip
+                    //     .html(`<strong>${d.title}</strong><br>` +
+                    //           `Distribution: ${(d.distribution * 100).toFixed(2)}%<br>` +
+                    //           `Sentiment: ${(d.positivity * 100).toFixed(1)}% positive<br>` +
+                    //           `Language: ${d.language}`)
+                    //     .style("left", (event.pageX - 2) + "px")
+                    //     .style("top", (event.pageY - 2) + "px");
+                }
+
+                function dragended(event, d) {
+                    if (!event.active) simulation.alphaTarget(0);
+                    d.fx = null;
+                    d.fy = null;
+                    // Hide tooltip when drag ends
+                    // Tooltip.style("opacity", 0);
+                }
+
+                // Update the drag behavior to include all functions
+                node.call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+                // Create line graph right after circle packing
+                createLineGraph(jsonData);
+
+                // Initialize table of contents after content is loaded
+                initializeTableOfContents();
+            })
+            .catch(error => console.error('Error loading JSON:', error));
+    </script>
+</body>
+</html>

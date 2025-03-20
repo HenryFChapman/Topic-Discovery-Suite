@@ -1,0 +1,6091 @@
+{
+  "complete": true,
+  "output": {
+    "title": "Global Political Developments: March 2025 Analysis",
+    "introduction": "This analysis explores a wide range of global political developments and conflicts unfolding in March 2025. The data reveals significant focus on several major geopolitical situations, including the ongoing Israel-Gaza conflict, political tensions in Ukraine and Russia, Turkish politics, and American political discourse. There is substantial coverage of international relations, domestic political controversies, legal challenges facing political figures, and humanitarian concerns. The conversations are predominantly in English, with some Turkish content specifically related to Turkish political matters. The discourse spans multiple perspectives, with varying degrees of sentiment depending on the topic \u2013 from highly negative coverage of armed conflicts to more positive discussions around democratic processes and weather updates.",
+    "narratives": [
+      {
+        "title": "Israel-Gaza Conflict",
+        "key_terms": [
+          {
+            "label": "GAZ-A",
+            "relevance": 95.3,
+            "count": 1912,
+            "appearances": 2289,
+            "distribution": 0.0191,
+            "est_total_count": 48818,
+            "est_total_appearances": 58444,
+            "positive_count": 311,
+            "negative_count": 786,
+            "est_total_positive_count": 7941,
+            "est_total_negative_count": 20068,
+            "positivity": 0.2835,
+            "sentimental": 0.5737,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "field": "entities",
+              "value": "vU754"
+            }
+          },
+          {
+            "label": "Israel",
+            "relevance": 40.2,
+            "count": 1236,
+            "appearances": 1496,
+            "distribution": 0.0124,
+            "est_total_count": 31558,
+            "est_total_appearances": 38197,
+            "positive_count": 241,
+            "negative_count": 495,
+            "est_total_positive_count": 6153,
+            "est_total_negative_count": 12639,
+            "positivity": 0.3274,
+            "sentimental": 0.5955,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "israel",
+                "israels",
+                "israele"
+              ]
+            }
+          },
+          {
+            "label": "Palestinians",
+            "relevance": 29.7,
+            "count": 713,
+            "appearances": 842,
+            "distribution": 0.0071,
+            "est_total_count": 18205,
+            "est_total_appearances": 21498,
+            "positive_count": 166,
+            "negative_count": 398,
+            "est_total_positive_count": 4238,
+            "est_total_negative_count": 10162,
+            "positivity": 0.2943,
+            "sentimental": 0.791,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "palestine",
+                "palestinians",
+                "palestinian",
+                "palestines"
+              ]
+            }
+          },
+          {
+            "label": "Israeli",
+            "relevance": 20.6,
+            "count": 797,
+            "appearances": 903,
+            "distribution": 0.008,
+            "est_total_count": 20349,
+            "est_total_appearances": 23056,
+            "positive_count": 103,
+            "negative_count": 387,
+            "est_total_positive_count": 2630,
+            "est_total_negative_count": 9881,
+            "positivity": 0.2102,
+            "sentimental": 0.6148,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "israeli",
+                "israelies",
+                "israelis"
+              ]
+            }
+          },
+          {
+            "label": "Israeli airstrikes",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Israeli airstrikes"
+            }
+          },
+          {
+            "label": "Strip",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Strip"
+            }
+          },
+          {
+            "label": "Hamas",
+            "relevance": 10.6,
+            "count": 427,
+            "appearances": 503,
+            "distribution": 0.0043,
+            "est_total_count": 10902,
+            "est_total_appearances": 12843,
+            "positive_count": 40,
+            "negative_count": 182,
+            "est_total_positive_count": 1021,
+            "est_total_negative_count": 4647,
+            "positivity": 0.1802,
+            "sentimental": 0.5199,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "hamas",
+                "hamasi",
+                "hamass",
+                "hamasin"
+              ]
+            }
+          },
+          {
+            "label": "Netanyahu",
+            "relevance": 11.7,
+            "count": 288,
+            "appearances": 331,
+            "distribution": 0.0029,
+            "est_total_count": 7353,
+            "est_total_appearances": 8451,
+            "positive_count": 55,
+            "negative_count": 100,
+            "est_total_positive_count": 1404,
+            "est_total_negative_count": 2553,
+            "positivity": 0.3548,
+            "sentimental": 0.5382,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "netanyahu",
+                "netanyahus",
+                "netanyahuya",
+                "netanyahudan",
+                "netanyahunun"
+              ]
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "field": "entities",
+              "value": [
+                "vU754"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "israel",
+                "israele",
+                "israels"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "palestine",
+                "palestines",
+                "palestinian",
+                "palestinians"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "israeli",
+                "israelies",
+                "israelis"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "israeli airstrikes"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "strip"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "hamas",
+                "hamasi",
+                "hamasin",
+                "hamass"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "netanyahu",
+                "netanyahudan",
+                "netanyahunun",
+                "netanyahus",
+                "netanyahuya"
+              ]
+            }
+          ]
+        },
+        "positivity": 0.28,
+        "distribution": 0.12000000000000001,
+        "description": "The ongoing Israel-Gaza conflict remains a significant focus of global attention. Israeli military operations in Gaza, particularly airstrikes in both northern and southern parts of the Strip, are extensively documented with generally negative sentiment (28% positivity).\n\nMost coverage centers on the humanitarian impact on Palestinians, with references to casualties and displacement. Hamas is frequently mentioned in relation to Israel's stated military objectives, while Prime Minister Netanyahu faces considerable criticism regarding his handling of the conflict.\n\nThere appears to be increased international pressure and protests against Israel's military actions, with terms like \"occupation\" strongly associated with Israeli military presence. The conflict generates significant discourse in both English and Turkish language sources, with Turkish sources using terms like \"Gazze\" and \"\u0130srail\" frequently appearing alongside \"protesto\" (protest), indicating coverage of demonstrations against Israeli actions.",
+        "examples": [],
+        "peak_date": "2025-03-20",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Palestine Solidarity Advocates",
+            "gender": {
+              "m": 0.6100000000000001,
+              "f": 0.39000000000000007,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Pro-Israel Advocates",
+            "gender": {
+              "m": 0.6700000000000002,
+              "f": 0.33000000000000007,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Conflict Journalists and Correspondents",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.29000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Gaza Humanitarian Observers",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Academic Middle East Analysts",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.17,
+              "n": 0.010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Independent Media Content Creators",
+            "gender": {
+              "m": 0.7400000000000001,
+              "f": 0.25,
+              "n": 0.010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Religious Identity Voices",
+            "gender": {
+              "m": 0.6600000000000001,
+              "f": 0.3400000000000001,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Commentators and Analysts",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Humanitarian and Justice Advocates",
+            "gender": {
+              "m": 0.6300000000000001,
+              "f": 0.37000000000000005,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Documentary and Investigative Journalists",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Official Information Sources",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.29000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Military and Security Analysts",
+            "gender": {
+              "m": 0.9,
+              "f": 0.1,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Creative and Artistic Voices",
+            "gender": {
+              "m": 0.31000000000000005,
+              "f": 0.6800000000000002,
+              "n": 0.010000000000000002
+            },
+            "color": "pink"
+          },
+          {
+            "title": "American Political Commentators",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.29000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Visual Documentation Specialists",
+            "gender": {
+              "m": 0.55,
+              "f": 0.45,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Legal and Human Rights Professionals",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Religious Leaders and Educators",
+            "gender": {
+              "m": 0,
+              "f": 0,
+              "n": 0
+            },
+            "color": "purple"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            433686
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            439161
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            629916
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            677494
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            555509
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            441600
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            427664
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            447275
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            483456
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            446620
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            374847
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            368616
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            468044
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            662926
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            407777
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            394679
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            413146
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            357098
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            393653
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            433464
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            407522
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            335233
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            311486
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            329270
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            301961
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            283671
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            296233
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            262306
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            852693
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            570062
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            268971
+          ]
+        ]
+      },
+      {
+        "title": "Ukraine-Russia Conflict",
+        "key_terms": [
+          {
+            "label": "Ukraine",
+            "relevance": 25.6,
+            "count": 776,
+            "appearances": 1035,
+            "distribution": 0.0078,
+            "est_total_count": 19813,
+            "est_total_appearances": 26426,
+            "positive_count": 186,
+            "negative_count": 247,
+            "est_total_positive_count": 4749,
+            "est_total_negative_count": 6307,
+            "positivity": 0.4296,
+            "sentimental": 0.558,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "ukrainian",
+                "ukraine",
+                "ukrainians",
+                "ukraines",
+                "ukrainy"
+              ]
+            }
+          },
+          {
+            "label": "Russia",
+            "relevance": 14.3,
+            "count": 485,
+            "appearances": 576,
+            "distribution": 0.0049,
+            "est_total_count": 12383,
+            "est_total_appearances": 14707,
+            "positive_count": 96,
+            "negative_count": 195,
+            "est_total_positive_count": 2451,
+            "est_total_negative_count": 4979,
+            "positivity": 0.3299,
+            "sentimental": 0.6,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "russia",
+                "russias"
+              ]
+            }
+          },
+          {
+            "label": "Russian",
+            "relevance": 11.6,
+            "count": 396,
+            "appearances": 475,
+            "distribution": 0.004,
+            "est_total_count": 10111,
+            "est_total_appearances": 12128,
+            "positive_count": 74,
+            "negative_count": 162,
+            "est_total_positive_count": 1889,
+            "est_total_negative_count": 4136,
+            "positivity": 0.3136,
+            "sentimental": 0.596,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "russian",
+                "russians",
+                "rus",
+                "rusy"
+              ]
+            }
+          },
+          {
+            "label": "Vladimir Putin",
+            "relevance": 12.6,
+            "count": 382,
+            "appearances": 472,
+            "distribution": 0.0038,
+            "est_total_count": 9753,
+            "est_total_appearances": 12051,
+            "positive_count": 69,
+            "negative_count": 134,
+            "est_total_positive_count": 1762,
+            "est_total_negative_count": 3421,
+            "positivity": 0.3399,
+            "sentimental": 0.5314,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "field": "entities",
+              "value": "jx8"
+            }
+          },
+          {
+            "label": "Zelensky",
+            "relevance": 10.8,
+            "count": 301,
+            "appearances": 338,
+            "distribution": 0.003,
+            "est_total_count": 7685,
+            "est_total_appearances": 8630,
+            "positive_count": 50,
+            "negative_count": 66,
+            "est_total_positive_count": 1277,
+            "est_total_negative_count": 1685,
+            "positivity": 0.431,
+            "sentimental": 0.3854,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "zelensky",
+                "zelenskyy",
+                "zelenskys",
+                "zelenskyys"
+              ]
+            }
+          },
+          {
+            "label": "drones",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "drones"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "ukraine",
+                "ukraines",
+                "ukrainian",
+                "ukrainians",
+                "ukrainy"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "russia",
+                "russias"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "rus",
+                "russian",
+                "russians",
+                "rusy"
+              ]
+            },
+            {
+              "op": "contains",
+              "field": "entities",
+              "value": [
+                "jx8"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "zelensky",
+                "zelenskys",
+                "zelenskyy",
+                "zelenskyys"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "drones"
+            }
+          ]
+        },
+        "positivity": 0.43000000000000005,
+        "distribution": 0.08000000000000002,
+        "description": "The ongoing conflict between Ukraine and Russia continues to generate significant global attention. Coverage focuses on military developments, particularly the use of drones in combat operations, as well as diplomatic efforts and international support for Ukraine.\n\nPresident Zelensky and Vladimir Putin are the central figures in this narrative, with discussions frequently analyzing their leadership and strategic decisions. The conflict maintains a moderate positivity rating (43%), likely reflecting a mix of coverage that includes both negative war reporting and more positive stories about Ukrainian resistance and international solidarity.\n\nThere is consistent coverage throughout the time period analyzed, suggesting this remains a steady focus of international attention without dramatic spikes in reporting. The narrative frequently intersects with broader discussions about global security, NATO's role, and Western support for Ukraine's defense efforts against Russian forces.",
+        "examples": [],
+        "peak_date": "2025-03-20",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Ukrainian Support Network",
+            "gender": {
+              "m": 0.7400000000000001,
+              "f": 0.26,
+              "n": 0.0012000000000000003
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Professional Political Analysts",
+            "gender": {
+              "m": 0.81,
+              "f": 0.19000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "American Conservative Voices",
+            "gender": {
+              "m": 0.7600000000000001,
+              "f": 0.24000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "War Correspondents and Field Journalists",
+            "gender": {
+              "m": 0.7200000000000001,
+              "f": 0.27,
+              "n": 0.0007000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Official Government and Institutional Accounts",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.28,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Military and Defense Experts",
+            "gender": {
+              "m": 0.91,
+              "f": 0.09000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Independent Media and Content Creators",
+            "gender": {
+              "m": 0.79,
+              "f": 0.2,
+              "n": 0.0024000000000000007
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Geopolitical Analysts and Think Tank Associates",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Information Curators and News Aggregators",
+            "gender": {
+              "m": 0.5900000000000001,
+              "f": 0.41000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Anti-War and Peace Advocates",
+            "gender": {
+              "m": 0.6700000000000002,
+              "f": 0.33000000000000007,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Russian Perspective Analysts",
+            "gender": {
+              "m": 0.6400000000000001,
+              "f": 0.36000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "OSINT and Intelligence Analysts",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Former Government Officials and Policymakers",
+            "gender": {
+              "m": 0.8300000000000001,
+              "f": 0.17,
+              "n": 0.0015000000000000005
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Religious and Faith-Based Commentators",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "European Policy Experts",
+            "gender": {
+              "m": 0.56,
+              "f": 0.44000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Cryptocurrency and Blockchain Enthusiasts",
+            "gender": {
+              "m": 0.97,
+              "f": 0.030000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Entertainment and Cultural Commentators",
+            "gender": {
+              "m": 0.81,
+              "f": 0.19000000000000003,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            548552
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            902564
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            876105
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            576696
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            459892
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            429015
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            660441
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            536335
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            407489
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            346592
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            1524941
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            2220021
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            1559508
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            1299629
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            1083818
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            663456
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            667623
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            571538
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            496497
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            503008
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            477091
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            503424
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            404254
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            405117
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            369433
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            316418
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            276787
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            299102
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            362423
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            346905
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            164204
+          ]
+        ]
+      },
+      {
+        "title": "Trump Legal Challenges",
+        "key_terms": [
+          {
+            "label": "Donald Trump",
+            "relevance": 100.0,
+            "count": 3076,
+            "appearances": 3638,
+            "distribution": 0.0308,
+            "est_total_count": 78538,
+            "est_total_appearances": 92887,
+            "positive_count": 561,
+            "negative_count": 1375,
+            "est_total_positive_count": 14324,
+            "est_total_negative_count": 35107,
+            "positivity": 0.2898,
+            "sentimental": 0.6294,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "field": "entities",
+              "value": "Wflk"
+            }
+          },
+          {
+            "label": "criminal",
+            "relevance": 23.6,
+            "count": 864,
+            "appearances": 937,
+            "distribution": 0.0086,
+            "est_total_count": 22060,
+            "est_total_appearances": 23924,
+            "positive_count": 87,
+            "negative_count": 510,
+            "est_total_positive_count": 2221,
+            "est_total_negative_count": 13022,
+            "positivity": 0.1457,
+            "sentimental": 0.691,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "criminal",
+                "criminals",
+                "criminales",
+                "criminale"
+              ]
+            }
+          },
+          {
+            "label": "court",
+            "relevance": 23.1,
+            "count": 1003,
+            "appearances": 1250,
+            "distribution": 0.01,
+            "est_total_count": 25609,
+            "est_total_appearances": 31916,
+            "positive_count": 192,
+            "negative_count": 447,
+            "est_total_positive_count": 4902,
+            "est_total_negative_count": 11413,
+            "positivity": 0.3005,
+            "sentimental": 0.6371,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "court",
+                "courts",
+                "courtesy"
+              ]
+            }
+          },
+          {
+            "label": "appeal",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "appeal"
+            }
+          },
+          {
+            "label": "ruling",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "ruling"
+            }
+          },
+          {
+            "label": "justice",
+            "relevance": 13.6,
+            "count": 531,
+            "appearances": 604,
+            "distribution": 0.0053,
+            "est_total_count": 13558,
+            "est_total_appearances": 15422,
+            "positive_count": 165,
+            "negative_count": 219,
+            "est_total_positive_count": 4213,
+            "est_total_negative_count": 5592,
+            "positivity": 0.4297,
+            "sentimental": 0.7232,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "justice",
+                "justices"
+              ]
+            }
+          },
+          {
+            "label": "York",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "York"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "field": "entities",
+              "value": [
+                "Wflk"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "criminal",
+                "criminale",
+                "criminales",
+                "criminals"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "court",
+                "courtesy",
+                "courts"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "appeal"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "ruling"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "justice",
+                "justices"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "york"
+            }
+          ]
+        },
+        "positivity": 0.25,
+        "distribution": 0.09000000000000002,
+        "description": "A significant narrative revolves around Donald Trump's ongoing legal challenges, with frequent mentions of court proceedings, appeals, and rulings. Coverage has a notably negative sentiment (25% positivity), reflecting the contentious nature of these legal battles.\n\nReferences to \"New York\" suggest focus on cases in that jurisdiction, while terms like \"district\" and \"justice\" indicate detailed reporting on judicial processes. The narrative shows consistent coverage throughout the analyzed period, with slight fluctuations in volume.\n\nDiscussions frequently touch on broader implications for American democracy and the presidency as an institution, with connections to related terms like \"executive\" powers and presidential authority. The coverage represents a complex intersection of legal reporting, political analysis, and public opinion on Trump's situation.",
+        "examples": [],
+        "peak_date": "2025-03-19",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Political Commentators",
+            "gender": {
+              "m": 0.81,
+              "f": 0.19000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Media Professionals",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Legal Professionals",
+            "gender": {
+              "m": 0.8500000000000001,
+              "f": 0.15000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "MAGA Conservatives",
+            "gender": {
+              "m": 0.8400000000000001,
+              "f": 0.16000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "News Aggregators and Updaters",
+            "gender": {
+              "m": 0.8400000000000001,
+              "f": 0.16000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Independent Media Creators",
+            "gender": {
+              "m": 0.77,
+              "f": 0.23,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Verified Public Officials",
+            "gender": {
+              "m": 0.6800000000000002,
+              "f": 0.32000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Entertainment Content Creators",
+            "gender": {
+              "m": 0.79,
+              "f": 0.21000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Progressive Activists",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "New York-Centric Voices",
+            "gender": {
+              "m": 0.6900000000000002,
+              "f": 0.30000000000000004,
+              "n": 0.009400000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Trusted Information Sources",
+            "gender": {
+              "m": 0.7400000000000001,
+              "f": 0.26,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Authors and Professional Writers",
+            "gender": {
+              "m": 0.7400000000000001,
+              "f": 0.26,
+              "n": 0.05000000000000001
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Female Lifestyle Influencers",
+            "gender": {
+              "m": 0.46,
+              "f": 0.54,
+              "n": 0.26
+            },
+            "color": "pink"
+          },
+          {
+            "title": "International Observers",
+            "gender": {
+              "m": 0.6900000000000002,
+              "f": 0.31000000000000005,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Cryptocurrency and Technology Advocates",
+            "gender": {
+              "m": 0.98,
+              "f": 0.020000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Religious Conservatives",
+            "gender": {
+              "m": 0.7400000000000001,
+              "f": 0.26,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Academic and Educational Voices",
+            "gender": {
+              "m": 0.92,
+              "f": 0.08000000000000002,
+              "n": 0.21000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Comedians and Entertainers",
+            "gender": {
+              "m": 0.8800000000000001,
+              "f": 0.11000000000000001,
+              "n": 0.39000000000000007
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            977186
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            1233688
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            1206093
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            1119506
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            894556
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            713988
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            926376
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            969181
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            1044411
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            1116746
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            1475734
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            1298242
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            935242
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            1054124
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            1288691
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            1563574
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            1259530
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            1123683
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            832188
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            736628
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            874417
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            992659
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            942363
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            936799
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            867315
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            659346
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            685313
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            863248
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            950899
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            872190
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            452265
+          ]
+        ]
+      },
+      {
+        "title": "Turkish Political Developments",
+        "key_terms": [
+          {
+            "label": "Recep Tayyip Erdo\u011fan",
+            "relevance": 26.1,
+            "count": 865,
+            "appearances": 976,
+            "distribution": 0.0086,
+            "est_total_count": 22086,
+            "est_total_appearances": 24920,
+            "positive_count": 57,
+            "negative_count": 164,
+            "est_total_positive_count": 1455,
+            "est_total_negative_count": 4187,
+            "positivity": 0.2579,
+            "sentimental": 0.2555,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "field": "entities",
+              "value": "vYz1"
+            }
+          },
+          {
+            "label": "Ekrem \u0130mamo\u011flu",
+            "relevance": 22.3,
+            "count": 1666,
+            "appearances": 1857,
+            "distribution": 0.0167,
+            "est_total_count": 42537,
+            "est_total_appearances": 47414,
+            "positive_count": 52,
+            "negative_count": 181,
+            "est_total_positive_count": 1328,
+            "est_total_negative_count": 4621,
+            "positivity": 0.2232,
+            "sentimental": 0.1399,
+            "language": "tr",
+            "query": {
+              "op": "contains",
+              "field": "entities",
+              "value": "cwa44"
+            }
+          },
+          {
+            "label": "\u0130stanbul",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "\u0130stanbul"
+            }
+          },
+          {
+            "label": "Cumhurba\u015fkan\u0131",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Cumhurba\u015fkan\u0131"
+            }
+          },
+          {
+            "label": "Kurulu",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Kurulu"
+            }
+          },
+          {
+            "label": "Milli",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Milli"
+            }
+          },
+          {
+            "label": "Turkey",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Turkey"
+            }
+          },
+          {
+            "label": "protesto",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "protesto"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "field": "entities",
+              "value": [
+                "vYz1"
+              ]
+            },
+            {
+              "op": "contains",
+              "field": "entities",
+              "value": [
+                "cwa44"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "istanbul"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "cumhurbaskani"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "kurulu"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "milli"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "turkey"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "protesto"
+            }
+          ]
+        },
+        "positivity": 0.24000000000000002,
+        "distribution": 0.13,
+        "description": "Turkish politics emerges as a major narrative, with President Recep Tayyip Erdo\u011fan and Istanbul Mayor Ekrem \u0130mamo\u011flu as central figures. The coverage, predominantly in Turkish, indicates significant domestic political tension with relatively negative sentiment (24% positivity).\n\n\u0130mamo\u011flu, frequently mentioned with terms like \"\u0130mamo\u011flu'na\" and \"\u0130mamo\u011flu'nun\" (Turkish possessive forms), appears to be facing protests or political challenges, as indicated by the association with \"protesto.\"\n\nErdo\u011fan is discussed in his official capacity as \"Cumhurba\u015fkan\u0131\" (President), often in relation to \"Milli\" (National) and \"Kurulu\" (Council) matters, suggesting focus on his executive actions. The narrative shows interesting distribution patterns, with a notable spike in coverage around March 20th, particularly for content related to Erdo\u011fan.\n\nIstanbul features prominently as a key location in this political narrative, likely reflecting its importance as both a political stronghold and battleground in Turkish politics.",
+        "examples": [],
+        "peak_date": "2025-03-20",
+        "language": "tr",
+        "personas": [
+          {
+            "title": "Government and Party Officials",
+            "gender": {
+              "m": 0.91,
+              "f": 0.09000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Professional Journalists and Media Figures",
+            "gender": {
+              "m": 0.8,
+              "f": 0.2,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Media Organizations and News Outlets",
+            "gender": {
+              "m": 0.92,
+              "f": 0.08000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Erdo\u011fan Supporters and Government Loyalists",
+            "gender": {
+              "m": 0.30000000000000004,
+              "f": 0.7000000000000001,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Digital Media Professionals",
+            "gender": {
+              "m": 0.8900000000000001,
+              "f": 0.11000000000000001,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Government Critics and Opposition Voices",
+            "gender": {
+              "m": 0.92,
+              "f": 0.08000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Nationalist Identity Expressers",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Sports Enthusiasts and Club Supporters",
+            "gender": {
+              "m": 0.8300000000000001,
+              "f": 0.15000000000000002,
+              "n": 0.020000000000000004
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Professional Women and Lifestyle Content Creators",
+            "gender": {
+              "m": 0.31000000000000005,
+              "f": 0.6900000000000002,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Parody and Alternative News Accounts",
+            "gender": {
+              "m": 1,
+              "f": 0,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Palestinian Solidarity Activists",
+            "gender": {
+              "m": 0.8900000000000001,
+              "f": 0.11000000000000001,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Turkish Legal Professionals",
+            "gender": {
+              "m": 0.9600000000000001,
+              "f": 0.04000000000000001,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Turkish Military and Defense Enthusiasts",
+            "gender": {
+              "m": 0.77,
+              "f": 0.23,
+              "n": 0
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            119592
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            127163
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            98242
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            116255
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            103024
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            110556
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            111947
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            114830
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            139442
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            136284
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            125969
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            94880
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            79481
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            92699
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            93814
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            88455
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            101637
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            110757
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            97556
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            88293
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            91718
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            91441
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            122886
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            109115
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            103721
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            87812
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            84531
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            85649
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            137172
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            220706
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            100342
+          ]
+        ]
+      },
+      {
+        "title": "US Political Polarization",
+        "key_terms": [
+          {
+            "label": "Democrats",
+            "relevance": 23.0,
+            "count": 560,
+            "appearances": 637,
+            "distribution": 0.0056,
+            "est_total_count": 14298,
+            "est_total_appearances": 16264,
+            "positive_count": 74,
+            "negative_count": 356,
+            "est_total_positive_count": 1889,
+            "est_total_negative_count": 9090,
+            "positivity": 0.1721,
+            "sentimental": 0.7679,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "democrats",
+                "democrat",
+                "democrates"
+              ]
+            }
+          },
+          {
+            "label": "Republican",
+            "relevance": 16.4,
+            "count": 446,
+            "appearances": 481,
+            "distribution": 0.0045,
+            "est_total_count": 11387,
+            "est_total_appearances": 12281,
+            "positive_count": 73,
+            "negative_count": 236,
+            "est_total_positive_count": 1864,
+            "est_total_negative_count": 6026,
+            "positivity": 0.2362,
+            "sentimental": 0.6928,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "republican",
+                "republicans"
+              ]
+            }
+          },
+          {
+            "label": "MAGA",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "MAGA"
+            }
+          },
+          {
+            "label": "Conservative",
+            "relevance": 10.6,
+            "count": 295,
+            "appearances": 323,
+            "distribution": 0.0029,
+            "est_total_count": 7532,
+            "est_total_appearances": 8247,
+            "positive_count": 75,
+            "negative_count": 138,
+            "est_total_positive_count": 1915,
+            "est_total_negative_count": 3523,
+            "positivity": 0.3521,
+            "sentimental": 0.722,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "conservative",
+                "conservatives"
+              ]
+            }
+          },
+          {
+            "label": "Liberal",
+            "relevance": 15.3,
+            "count": 458,
+            "appearances": 526,
+            "distribution": 0.0046,
+            "est_total_count": 11694,
+            "est_total_appearances": 13430,
+            "positive_count": 88,
+            "negative_count": 234,
+            "est_total_positive_count": 2247,
+            "est_total_negative_count": 5975,
+            "positivity": 0.2733,
+            "sentimental": 0.7031,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "liberals",
+                "liberal",
+                "liberales",
+                "libere",
+                "liberale"
+              ]
+            }
+          },
+          {
+            "label": "voters",
+            "relevance": 14.1,
+            "count": 479,
+            "appearances": 533,
+            "distribution": 0.0048,
+            "est_total_count": 12230,
+            "est_total_appearances": 13609,
+            "positive_count": 114,
+            "negative_count": 230,
+            "est_total_positive_count": 2911,
+            "est_total_negative_count": 5872,
+            "positivity": 0.3314,
+            "sentimental": 0.7182,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "voter",
+                "voters"
+              ]
+            }
+          },
+          {
+            "label": "fascist",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "fascist"
+            }
+          },
+          {
+            "label": "activist",
+            "relevance": 11.7,
+            "count": 378,
+            "appearances": 397,
+            "distribution": 0.0038,
+            "est_total_count": 9651,
+            "est_total_appearances": 10136,
+            "positive_count": 59,
+            "negative_count": 171,
+            "est_total_positive_count": 1506,
+            "est_total_negative_count": 4366,
+            "positivity": 0.2565,
+            "sentimental": 0.6085,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "activist",
+                "activists",
+                "activiste",
+                "activistes"
+              ]
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "democrat",
+                "democrates",
+                "democrats"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "republican",
+                "republicans"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "maga"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "conservative",
+                "conservatives"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "liberal",
+                "liberale",
+                "liberales",
+                "liberals",
+                "libere"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "voter",
+                "voters"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "fascist"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "activist",
+                "activiste",
+                "activistes",
+                "activists"
+              ]
+            }
+          ]
+        },
+        "positivity": 0.23,
+        "distribution": 0.08000000000000002,
+        "description": "American political polarization emerges as a significant theme, with coverage of tensions between Democrats and Republicans showing notably negative sentiment (23% positivity). Terms like \"MAGA,\" \"fascist,\" and references to activism suggest heated political discourse around ideological divisions.\n\nThe narrative encompasses discussions about voters, electoral politics, and partisan activism, with mentions of specific political figures like \"Schumer\" (likely Senate Majority Leader Chuck Schumer) and references to broader ideological frameworks including mentions of \"fascism\" and comparisons between liberal and conservative values.\n\nThere appears to be an increase in this type of political content toward the latter part of the analyzed period, potentially indicating growing tensions or specific political events driving conversation. The language primarily associated with this narrative is English, suggesting it centers on American political dynamics rather than international perspectives on US politics.",
+        "examples": [],
+        "peak_date": "2025-03-20",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Political Media Professionals",
+            "gender": {
+              "m": 0.8,
+              "f": 0.2,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Elected Officials and Political Candidates",
+            "gender": {
+              "m": 0.5,
+              "f": 0.5,
+              "n": 0
+            },
+            "color": "purple"
+          },
+          {
+            "title": "Conservative MAGA Supporters",
+            "gender": {
+              "m": 0.47000000000000003,
+              "f": 0.53,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Anti-MAGA Resisters",
+            "gender": {
+              "m": 0.6500000000000001,
+              "f": 0.35000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Content Creators",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Authors and Intellectuals",
+            "gender": {
+              "m": 0.7000000000000001,
+              "f": 0.30000000000000004,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Journalists and Reporters",
+            "gender": {
+              "m": 0.7400000000000001,
+              "f": 0.26,
+              "n": 0.0027000000000000006
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Patriotic Conservatives",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Media Executives",
+            "gender": {
+              "m": 0.8300000000000001,
+              "f": 0.17,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Global Political Analysts",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Liberal and Progressive Advocates",
+            "gender": {
+              "m": 0.7000000000000001,
+              "f": 0.30000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Activists and Organizers",
+            "gender": {
+              "m": 0.54,
+              "f": 0.46,
+              "n": 0.003000000000000001
+            },
+            "color": "blue"
+          },
+          {
+            "title": "International Political Commentators",
+            "gender": {
+              "m": 0.6800000000000002,
+              "f": 0.32000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Educators and Academics",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Faith-Based Political Voices",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Veterans and Military Voices",
+            "gender": {
+              "m": 0.8,
+              "f": 0.2,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Tech-Savvy Political Commentators",
+            "gender": {
+              "m": 0.8300000000000001,
+              "f": 0.17,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Jewish Political Voices",
+            "gender": {
+              "m": 0.7000000000000001,
+              "f": 0.30000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Pro-Palestinian Activists",
+            "gender": {
+              "m": 0.46,
+              "f": 0.53,
+              "n": 0.006000000000000002
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Ukraine Supporters",
+            "gender": {
+              "m": 0.6500000000000001,
+              "f": 0.33000000000000007,
+              "n": 0.025000000000000005
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            421569
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            460099
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            501141
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            507007
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            404506
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            361336
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            406445
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            455323
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            556316
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            439782
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            381333
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            334919
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            336796
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            397036
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            547813
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            898858
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            599140
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            464603
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            367250
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            412678
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            459785
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            480396
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            472848
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            536875
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            509576
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            343861
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            338462
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            372240
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            382450
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            418444
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            249338
+          ]
+        ]
+      },
+      {
+        "title": "Constitutional and Democratic Governance",
+        "key_terms": [
+          {
+            "label": "Constitution",
+            "relevance": 20.3,
+            "count": 528,
+            "appearances": 593,
+            "distribution": 0.0053,
+            "est_total_count": 13481,
+            "est_total_appearances": 15141,
+            "positive_count": 74,
+            "negative_count": 274,
+            "est_total_positive_count": 1889,
+            "est_total_negative_count": 6996,
+            "positivity": 0.2126,
+            "sentimental": 0.6591,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "constitution",
+                "constitutional",
+                "constitutions",
+                "constitutionale"
+              ]
+            }
+          },
+          {
+            "label": "democracy",
+            "relevance": 19.8,
+            "count": 578,
+            "appearances": 617,
+            "distribution": 0.0058,
+            "est_total_count": 14758,
+            "est_total_appearances": 15754,
+            "positive_count": 149,
+            "negative_count": 277,
+            "est_total_positive_count": 3804,
+            "est_total_negative_count": 7072,
+            "positivity": 0.3498,
+            "sentimental": 0.737,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "democracy",
+                "democracys"
+              ]
+            }
+          },
+          {
+            "label": "National",
+            "relevance": 22.7,
+            "count": 933,
+            "appearances": 1074,
+            "distribution": 0.0093,
+            "est_total_count": 23822,
+            "est_total_appearances": 27422,
+            "positive_count": 333,
+            "negative_count": 270,
+            "est_total_positive_count": 8502,
+            "est_total_negative_count": 6894,
+            "positivity": 0.5522,
+            "sentimental": 0.6463,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "nation",
+                "national",
+                "nations"
+              ]
+            }
+          },
+          {
+            "label": "Assembly",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Assembly"
+            }
+          },
+          {
+            "label": "rule",
+            "relevance": 11.9,
+            "count": 394,
+            "appearances": 434,
+            "distribution": 0.0039,
+            "est_total_count": 10060,
+            "est_total_appearances": 11081,
+            "positive_count": 90,
+            "negative_count": 166,
+            "est_total_positive_count": 2298,
+            "est_total_negative_count": 4238,
+            "positivity": 0.3516,
+            "sentimental": 0.6497,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "rules",
+                "rule"
+              ]
+            }
+          },
+          {
+            "label": "values",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "values"
+            }
+          },
+          {
+            "label": "Western",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Western"
+            }
+          },
+          {
+            "label": "dictatorship",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "dictatorship"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "constitution",
+                "constitutional",
+                "constitutionale",
+                "constitutions"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "democracy",
+                "democracys"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "nation",
+                "national",
+                "nations"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "assembly"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "rule",
+                "rules"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "values"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "western"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "dictatorship"
+            }
+          ]
+        },
+        "positivity": 0.37000000000000005,
+        "distribution": 0.07,
+        "description": "This narrative explores themes of constitutional governance, democratic values, and legislative institutions across various countries. With a moderately positive sentiment (37%), discussions frequently reference formal governmental bodies like \"National Assembly\" and constitutional principles.\n\nThere appears to be significant discourse comparing democratic systems with authoritarian alternatives, as evidenced by the associations between \"democracy,\" \"Western values,\" and contrasting terms like \"dictatorship.\"\n\nReferences to \"Fubara\" suggest coverage of Nigerian politics, where constitutional matters are being debated. The term \"suspended\" appearing in related contexts may indicate constitutional crises or suspension of democratic norms in certain regions.\n\nThe narrative maintains relatively consistent coverage throughout the analyzed period, showing global concern for democratic institutions and constitutional governance across multiple countries and contexts.",
+        "examples": [],
+        "peak_date": "2025-03-20",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Media Professionals and Broadcasters",
+            "gender": {
+              "m": 0.7600000000000001,
+              "f": 0.24000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Analysts and Commentators",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Official Government and Institutional Accounts",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Constitutional Advocates and Democracy Promoters",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Academic and Educational Voices",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Legal Professionals and Advocates",
+            "gender": {
+              "m": 0.7600000000000001,
+              "f": 0.24000000000000002,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Religious and Faith-Based Voices",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "International Affairs Specialists",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.29000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Content Creators and Digital Media Personalities",
+            "gender": {
+              "m": 0.7400000000000001,
+              "f": 0.26,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Patriotic Nationalists",
+            "gender": {
+              "m": 0.77,
+              "f": 0.23,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Independent Journalists and Media Critics",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.29000000000000004,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Youth-Oriented Educational Content Creators",
+            "gender": {
+              "m": 0.54,
+              "f": 0.46,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Progressive Social Justice Advocates",
+            "gender": {
+              "m": 0.6500000000000001,
+              "f": 0.35000000000000003,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Digital News Aggregators and Update Services",
+            "gender": {
+              "m": 0.6700000000000002,
+              "f": 0.33000000000000007,
+              "n": 0.0020000000000000005
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Creative and Cultural Commentators",
+            "gender": {
+              "m": 0.6800000000000002,
+              "f": 0.31000000000000005,
+              "n": 0.007000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Regional Political Commentators",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Sports Organizations and Athletes with Political Voice",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "International Development and Human Rights Workers",
+            "gender": {
+              "m": 0.6700000000000002,
+              "f": 0.33000000000000007,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Digital Entrepreneurs and Tech Voices",
+            "gender": {
+              "m": 0.8600000000000001,
+              "f": 0.14,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Lifestyle and Personal Brand Influencers",
+            "gender": {
+              "m": 0.38000000000000006,
+              "f": 0.6200000000000001,
+              "n": 0.0020000000000000005
+            },
+            "color": "pink"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            693973
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            744924
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            807732
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            814418
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            593310
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            532145
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            691204
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            747320
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            768009
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            712640
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            729231
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            587121
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            548755
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            721219
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            740206
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            740067
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            729525
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            702996
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            561247
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            523206
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            659104
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            685988
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            665535
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            660098
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            616227
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            505230
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            490735
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            626557
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            670065
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            624669
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            394778
+          ]
+        ]
+      },
+      {
+        "title": "Immigration Discourse",
+        "key_terms": [
+          {
+            "label": "illegal",
+            "relevance": 15.4,
+            "count": 404,
+            "appearances": 437,
+            "distribution": 0.004,
+            "est_total_count": 10315,
+            "est_total_appearances": 11158,
+            "positive_count": 46,
+            "negative_count": 274,
+            "est_total_positive_count": 1174,
+            "est_total_negative_count": 6996,
+            "positivity": 0.1437,
+            "sentimental": 0.7921,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "illegal",
+                "illegale",
+                "illegals"
+              ]
+            }
+          },
+          {
+            "label": "immigrants",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "immigrants"
+            }
+          },
+          {
+            "label": "migrantes",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "migrantes"
+            }
+          },
+          {
+            "label": "deported",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "deported"
+            }
+          },
+          {
+            "label": "deportation",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "deportation"
+            }
+          },
+          {
+            "label": "violent",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "violent"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "illegal",
+                "illegale",
+                "illegals"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "immigrants"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "migrantes"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "deported"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "deportation"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "violent"
+            }
+          ]
+        },
+        "positivity": 0.14,
+        "distribution": 0.04000000000000001,
+        "description": "Immigration emerges as a highly contentious narrative with extremely negative sentiment (14% positivity), focused primarily on rhetoric around \"illegal immigrants\" and deportation policies. The presence of both English and Spanish terms (\"migrantes\") indicates this is a transnational issue affecting multiple countries and communities.\n\nThe narrative frequently associates immigration with enforcement actions (\"deported,\" \"deportation\") and occasionally with alleged criminal behavior (\"violent\"), suggesting a security-focused framing in much of the coverage.\n\nVolume of this narrative increases toward the end of the analyzed period, potentially indicating new policy announcements or immigration events triggering increased discussion. This narrative likely intersects with domestic politics in several countries, particularly the United States, where immigration remains a divisive political issue.",
+        "examples": [],
+        "peak_date": "2025-03-20",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Conservative Immigration Hardliners",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.28,
+              "n": 0.010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Media Professionals & Political Commentators",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Immigration News Aggregators",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Progressive Immigration Advocates",
+            "gender": {
+              "m": 0.47000000000000003,
+              "f": 0.51,
+              "n": 0.020000000000000004
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Official Government Accounts",
+            "gender": {
+              "m": 0.7600000000000001,
+              "f": 0.24000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Border Security Advocates",
+            "gender": {
+              "m": 0.77,
+              "f": 0.23,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Immigration Policy Analysts",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Legal Immigration Professionals",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Faith-Based Immigration Commentators",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "International Perspective Commentators",
+            "gender": {
+              "m": 0.6700000000000002,
+              "f": 0.33000000000000007,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Palestine-Israel Conflict Commentators",
+            "gender": {
+              "m": 0.55,
+              "f": 0.43000000000000005,
+              "n": 0.020000000000000004
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Entertainment and Lifestyle Content Creators",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Politicians and Political Candidates",
+            "gender": {
+              "m": 0.8,
+              "f": 0.2,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Parody and Satirical Commentators",
+            "gender": {
+              "m": 0.98,
+              "f": 0.020000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Academic and Institutional Researchers",
+            "gender": {
+              "m": 0.8,
+              "f": 0.2,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "International Relations Specialists",
+            "gender": {
+              "m": 0.7000000000000001,
+              "f": 0.30000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Civic Activists and Organizers",
+            "gender": {
+              "m": 0.6000000000000001,
+              "f": 0.39000000000000007,
+              "n": 0.010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Criminal Justice and Law Enforcement Commentators",
+            "gender": {
+              "m": 0.8300000000000001,
+              "f": 0.17,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Regional Border Community Voices",
+            "gender": {
+              "m": 0.79,
+              "f": 0.21000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            212631
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            192612
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            200321
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            182170
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            150742
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            136735
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            163344
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            168224
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            175225
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            169567
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            148587
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            115398
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            106386
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            148416
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            172524
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            210183
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            187757
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            166008
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            144805
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            144228
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            192509
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            214919
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            182351
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            198692
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            178601
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            147882
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            174849
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            228112
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            238256
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            171073
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            98844
+          ]
+        ]
+      },
+      {
+        "title": "Canadian Politics",
+        "key_terms": [
+          {
+            "label": "Canada",
+            "relevance": 15.1,
+            "count": 434,
+            "appearances": 538,
+            "distribution": 0.0043,
+            "est_total_count": 11081,
+            "est_total_appearances": 13736,
+            "positive_count": 129,
+            "negative_count": 175,
+            "est_total_positive_count": 3294,
+            "est_total_negative_count": 4468,
+            "positivity": 0.4243,
+            "sentimental": 0.7005,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "canada",
+                "canadas"
+              ]
+            }
+          },
+          {
+            "label": "Canadian",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Canadian"
+            }
+          },
+          {
+            "label": "Carney",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Carney"
+            }
+          },
+          {
+            "label": "Liberal",
+            "relevance": 15.3,
+            "count": 458,
+            "appearances": 526,
+            "distribution": 0.0046,
+            "est_total_count": 11694,
+            "est_total_appearances": 13430,
+            "positive_count": 88,
+            "negative_count": 234,
+            "est_total_positive_count": 2247,
+            "est_total_negative_count": 5975,
+            "positivity": 0.2733,
+            "sentimental": 0.7031,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "liberals",
+                "liberal",
+                "liberales",
+                "libere",
+                "liberale"
+              ]
+            }
+          },
+          {
+            "label": "Conservative",
+            "relevance": 10.6,
+            "count": 295,
+            "appearances": 323,
+            "distribution": 0.0029,
+            "est_total_count": 7532,
+            "est_total_appearances": 8247,
+            "positive_count": 75,
+            "negative_count": 138,
+            "est_total_positive_count": 1915,
+            "est_total_negative_count": 3523,
+            "positivity": 0.3521,
+            "sentimental": 0.722,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "conservative",
+                "conservatives"
+              ]
+            }
+          },
+          {
+            "label": "Prime Minister",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Prime Minister"
+            }
+          },
+          {
+            "label": "Minister",
+            "relevance": 12.9,
+            "count": 626,
+            "appearances": 733,
+            "distribution": 0.0063,
+            "est_total_count": 15983,
+            "est_total_appearances": 18715,
+            "positive_count": 202,
+            "negative_count": 209,
+            "est_total_positive_count": 5158,
+            "est_total_negative_count": 5336,
+            "positivity": 0.4915,
+            "sentimental": 0.6565,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "minister",
+                "ministers"
+              ]
+            }
+          },
+          {
+            "label": "China",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "China"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "canada",
+                "canadas"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "canadian"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "carney"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "liberal",
+                "liberale",
+                "liberales",
+                "liberals",
+                "libere"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "conservative",
+                "conservatives"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "prime minister"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "minister",
+                "ministers"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "china"
+            }
+          ]
+        },
+        "positivity": 0.42000000000000004,
+        "distribution": 0.04000000000000001,
+        "description": "Canadian politics features as a distinct narrative with moderate positivity (42%), focusing on tensions between Liberal and Conservative political factions. A key figure in this discourse appears to be \"Carney\" (likely Mark Carney), mentioned in connection with the Liberal party.\n\nDiscussions frequently reference the Prime Minister and ministerial positions, suggesting focus on executive governance. Interestingly, China appears as a related term, indicating that Canadian foreign policy toward China is a significant element of this political discourse.\n\nThe narrative shows relatively consistent coverage throughout the period analyzed, with some increase in volume in the latter part of the timeframe. As with other political narratives, this one captures the partisan nature of political discourse, though with less negative sentiment than some other political topics in the dataset.",
+        "examples": [],
+        "peak_date": "2025-03-19",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Canadian Political Officials",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Canadian Conservative Voices",
+            "gender": {
+              "m": 0.7200000000000001,
+              "f": 0.28,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Canadian Liberal Supporters",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.29000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Patriotic Canadian Citizens",
+            "gender": {
+              "m": 0.6000000000000001,
+              "f": 0.4,
+              "n": 0.05000000000000001
+            },
+            "color": "blue"
+          },
+          {
+            "title": "American MAGA Commentators",
+            "gender": {
+              "m": 0.79,
+              "f": 0.21000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Professional Journalists and Media",
+            "gender": {
+              "m": 0.79,
+              "f": 0.21000000000000002,
+              "n": 0.05000000000000001
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Content Creators",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0.030000000000000006
+            },
+            "color": "blue"
+          },
+          {
+            "title": "China Observers and Analysts",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.17,
+              "n": 1
+            },
+            "color": "blue"
+          },
+          {
+            "title": "International Affairs Specialists",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0.2
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Academic and Intellectual Voices",
+            "gender": {
+              "m": 0.8200000000000001,
+              "f": 0.18000000000000002,
+              "n": 0.27
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Business Leaders",
+            "gender": {
+              "m": 0.8500000000000001,
+              "f": 0.15000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Alternative Media and Independent Journalists",
+            "gender": {
+              "m": 0.7100000000000001,
+              "f": 0.28,
+              "n": 0.23
+            },
+            "color": "blue"
+          },
+          {
+            "title": "News Aggregators and Update Accounts",
+            "gender": {
+              "m": 0.6700000000000002,
+              "f": 0.32000000000000006,
+              "n": 1.5
+            },
+            "color": "blue"
+          },
+          {
+            "title": "India-Connected Political Observers",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Digital Lifestyle Influencers",
+            "gender": {
+              "m": 0.4,
+              "f": 0.6000000000000001,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Faith-Based Political Voices",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Arts and Culture Commentators",
+            "gender": {
+              "m": 0.6000000000000001,
+              "f": 0.4,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Regional Canadian Political Voices",
+            "gender": {
+              "m": 0.7000000000000001,
+              "f": 0.30000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Cryptocurrency and Financial Politics Enthusiasts",
+            "gender": {
+              "m": 0.8700000000000001,
+              "f": 0.13,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Sports-Connected Political Commentators",
+            "gender": {
+              "m": 0.8400000000000001,
+              "f": 0.16000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            541457
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            521963
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            567838
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            730361
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            455183
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            384833
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            524122
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            550218
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            556733
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            569628
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            561005
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            438197
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            459510
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            535527
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            790029
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            750207
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            716307
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            658611
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            506967
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            478455
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            662921
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            705479
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            639866
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            596222
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            587527
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            420890
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            401995
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            486000
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            494254
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            466912
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            290991
+          ]
+        ]
+      },
+      {
+        "title": "Weather Updates and Forecasts",
+        "key_terms": [
+          {
+            "label": "March",
+            "relevance": 18.0,
+            "count": 701,
+            "appearances": 785,
+            "distribution": 0.007,
+            "est_total_count": 17898,
+            "est_total_appearances": 20043,
+            "positive_count": 333,
+            "negative_count": 164,
+            "est_total_positive_count": 8502,
+            "est_total_negative_count": 4187,
+            "positivity": 0.67,
+            "sentimental": 0.709,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "march",
+                "marching",
+                "marched",
+                "marches",
+                "marche"
+              ]
+            }
+          },
+          {
+            "label": "snow",
+            "relevance": 15.2,
+            "count": 192,
+            "appearances": 228,
+            "distribution": 0.0019,
+            "est_total_count": 4902,
+            "est_total_appearances": 5821,
+            "positive_count": 125,
+            "negative_count": 30,
+            "est_total_positive_count": 3192,
+            "est_total_negative_count": 766,
+            "positivity": 0.8065,
+            "sentimental": 0.8073,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "snow",
+                "snowy",
+                "snowing"
+              ]
+            }
+          },
+          {
+            "label": "Thursday",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Thursday"
+            }
+          },
+          {
+            "label": "forecast",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "forecast"
+            }
+          },
+          {
+            "label": "updates",
+            "relevance": 11.6,
+            "count": 611,
+            "appearances": 843,
+            "distribution": 0.0061,
+            "est_total_count": 15600,
+            "est_total_appearances": 21524,
+            "positive_count": 327,
+            "negative_count": 119,
+            "est_total_positive_count": 8349,
+            "est_total_negative_count": 3038,
+            "positivity": 0.7332,
+            "sentimental": 0.73,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "update",
+                "updates",
+                "updatenext",
+                "updated"
+              ]
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "march",
+                "marche",
+                "marched",
+                "marches",
+                "marching"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "snow",
+                "snowing",
+                "snowy"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "thursday"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "forecast"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "update",
+                "updated",
+                "updatenext",
+                "updates"
+              ]
+            }
+          ]
+        },
+        "positivity": 0.7400000000000001,
+        "distribution": 0.020000000000000004,
+        "description": "A distinctly positive narrative (74% positivity) centers on weather updates and forecasts, particularly focused on snow conditions in March. This represents one of the few non-political topics with significant coverage in the dataset.\n\nReports frequently reference \"Thursday\" specifically, suggesting weather events or forecasts tied to that day. The high positivity score indicates that weather reporting generally maintains a neutral to positive tone, even when discussing potentially disruptive snow events.\n\nThis narrative maintains consistent low-level coverage throughout the analyzed period, showing regular but not dominant attention to weather conditions. The relatively mundane nature of this narrative stands in stark contrast to the more contentious political and conflict-focused discussions dominating the dataset.",
+        "examples": [],
+        "peak_date": "2025-03-19",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Official Media Channels",
+            "gender": {
+              "m": 0.8,
+              "f": 0.2,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Update and Information Accounts",
+            "gender": {
+              "m": 0.6600000000000001,
+              "f": 0.3400000000000001,
+              "n": 0.0015000000000000005
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Lifestyle and Fashion Influencers",
+            "gender": {
+              "m": 0.39000000000000007,
+              "f": 0.6100000000000001,
+              "n": 0.002800000000000001
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Content Creators and YouTubers",
+            "gender": {
+              "m": 0.6800000000000002,
+              "f": 0.32000000000000006,
+              "n": 0.0012000000000000003
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Event Promoters",
+            "gender": {
+              "m": 0.7200000000000001,
+              "f": 0.28,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Marketing and Promotional Accounts",
+            "gender": {
+              "m": 0.6500000000000001,
+              "f": 0.35000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Creative Artists",
+            "gender": {
+              "m": 0.54,
+              "f": 0.45,
+              "n": 0.009300000000000003
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Weather and Forecast Specialists",
+            "gender": {
+              "m": 0.6300000000000001,
+              "f": 0.37000000000000005,
+              "n": 0.0022000000000000006
+            },
+            "color": "blue"
+          },
+          {
+            "title": "News and Journalism Professionals",
+            "gender": {
+              "m": 0.6600000000000001,
+              "f": 0.3400000000000001,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Sports Enthusiasts",
+            "gender": {
+              "m": 0.97,
+              "f": 0.030000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Photographers and Visual Content Creators",
+            "gender": {
+              "m": 0.6800000000000002,
+              "f": 0.32000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Crypto and Investment Enthusiasts",
+            "gender": {
+              "m": 0.97,
+              "f": 0.030000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Faith and Religious Community",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.26,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Entertainment Industry Professionals",
+            "gender": {
+              "m": 0.7000000000000001,
+              "f": 0.30000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Music and Performance Artists",
+            "gender": {
+              "m": 0.52,
+              "f": 0.48000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Authors and Educators",
+            "gender": {
+              "m": 0.51,
+              "f": 0.48000000000000004,
+              "n": 0.0016000000000000003
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Fan Community Managers",
+            "gender": {
+              "m": 0.48000000000000004,
+              "f": 0.52,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Female Beauty and Wellness Influencers",
+            "gender": {
+              "m": 0.12000000000000001,
+              "f": 0.8800000000000001,
+              "n": 0.005000000000000001
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Global Business Networkers",
+            "gender": {
+              "m": 0.6800000000000002,
+              "f": 0.32000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Indian Cultural Content Creators",
+            "gender": {
+              "m": 0.56,
+              "f": 0.44000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Commentators",
+            "gender": {
+              "m": 0.54,
+              "f": 0.46,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Comedians and Entertainment Personalities",
+            "gender": {
+              "m": 0.8500000000000001,
+              "f": 0.15000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            847564
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            897969
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            1043609
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            928472
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            620440
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            556455
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            851164
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            926690
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            997400
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            1202985
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            1153778
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            1107770
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            929875
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            1322222
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            1384822
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            1370728
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            1459368
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            1341675
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            960438
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            891470
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            1199244
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            1263607
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            1280765
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            1340426
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            1175364
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            844378
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            755528
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            1065921
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            1058597
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            994835
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            721742
+          ]
+        ]
+      },
+      {
+        "title": "Humanitarian and Religious Sentiment",
+        "key_terms": [
+          {
+            "label": "Thank",
+            "relevance": 18.3,
+            "count": 475,
+            "appearances": 502,
+            "distribution": 0.0047,
+            "est_total_count": 12128,
+            "est_total_appearances": 12817,
+            "positive_count": 388,
+            "negative_count": 54,
+            "est_total_positive_count": 9907,
+            "est_total_negative_count": 1379,
+            "positivity": 0.8778,
+            "sentimental": 0.9305,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "thank",
+                "thanks",
+                "thanked"
+              ]
+            }
+          },
+          {
+            "label": "God",
+            "relevance": 10.9,
+            "count": 235,
+            "appearances": 243,
+            "distribution": 0.0024,
+            "est_total_count": 6000,
+            "est_total_appearances": 6204,
+            "positive_count": 100,
+            "negative_count": 96,
+            "est_total_positive_count": 2553,
+            "est_total_negative_count": 2451,
+            "positivity": 0.5102,
+            "sentimental": 0.834,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "gods",
+                "god"
+              ]
+            }
+          },
+          {
+            "label": "Allah",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Allah"
+            }
+          },
+          {
+            "label": "Good night",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Good night"
+            }
+          },
+          {
+            "label": "Mubarak",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Mubarak"
+            }
+          },
+          {
+            "label": "happy",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "happy"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "thank",
+                "thanked",
+                "thanks"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "god",
+                "gods"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "allah"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "good night"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "mubarak"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "happy"
+            }
+          ]
+        },
+        "positivity": 0.8800000000000001,
+        "distribution": 0.05000000000000001,
+        "description": "A narrative with extremely positive sentiment (88% positivity) centers on expressions of gratitude, religious references, and well-wishing. This content stands out from the predominantly political nature of most discussions in the dataset.\n\nReferences to \"God\" and \"Allah\" indicate religious content spanning multiple faiths, while terms like \"Good night,\" \"Mubarak,\" and \"happy\" suggest content focused on personal expressions and religious occasions. The mention of \"Mubarak\" may specifically indicate content related to Ramadan or other Islamic observances.\n\nThis narrative maintains consistent low-level presence throughout the period analyzed, representing a steady stream of positive, personal, and faith-based content amid the more negative political discourse. This type of content likely represents individual social media users rather than news outlets or political commentators.",
+        "examples": [],
+        "peak_date": null,
+        "language": "en",
+        "personas": [
+          {
+            "title": "Commercial Content Creators",
+            "gender": {
+              "m": 0.52,
+              "f": 0.48000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Lifestyle and Fashion Influencers",
+            "gender": {
+              "m": 0.31000000000000005,
+              "f": 0.6900000000000002,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Entertainment Industry Professionals",
+            "gender": {
+              "m": 0.47000000000000003,
+              "f": 0.53,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "YouTube Content Channels",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Christian Faith Expressers",
+            "gender": {
+              "m": 0.77,
+              "f": 0.23,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Islamic Faith Expressers",
+            "gender": {
+              "m": 0.25,
+              "f": 0.7500000000000001,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Fitness and Wellness Advocates",
+            "gender": {
+              "m": 0.42000000000000004,
+              "f": 0.5800000000000001,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Business Entrepreneurs and Founders",
+            "gender": {
+              "m": 0.52,
+              "f": 0.48000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Photography and Visual Artists",
+            "gender": {
+              "m": 0.49000000000000005,
+              "f": 0.49000000000000005,
+              "n": 0.012500000000000002
+            },
+            "color": "purple"
+          },
+          {
+            "title": "Indian Cultural Identifiers",
+            "gender": {
+              "m": 0.53,
+              "f": 0.47000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "American Political Commentators",
+            "gender": {
+              "m": 0.51,
+              "f": 0.49000000000000005,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Sports Champions and Athletes",
+            "gender": {
+              "m": 0.7000000000000001,
+              "f": 0.30000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Global Entertainers and Performers",
+            "gender": {
+              "m": 0.45,
+              "f": 0.55,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Empowered Female Personalities",
+            "gender": {
+              "m": 0.35000000000000003,
+              "f": 0.6400000000000001,
+              "n": 0.010000000000000002
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Professional Dancers and Choreographers",
+            "gender": {
+              "m": 0.46,
+              "f": 0.54,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Family-Focused Celebrators",
+            "gender": {
+              "m": 0.49000000000000005,
+              "f": 0.51,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Music Artists and Composers",
+            "gender": {
+              "m": 0.53,
+              "f": 0.47000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "News and Update Providers",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.22000000000000003,
+              "n": 0.026900000000000007
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Educational Content Creators",
+            "gender": {
+              "m": 0.42000000000000004,
+              "f": 0.5800000000000001,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Aesthetic Visual Curators",
+            "gender": {
+              "m": 0.25,
+              "f": 0.7400000000000001,
+              "n": 0.010000000000000002
+            },
+            "color": "pink"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            1724378
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            1585378
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            1644600
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            1666308
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            1540218
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            1492385
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            1625033
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            1573802
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            1640476
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            1611657
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            1868902
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            1924291
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            1734650
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            1716405
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            1660044
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            1699640
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            1614821
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            1642997
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            2314562
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            1857823
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            1516896
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            1465543
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            1447091
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            1528467
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            1796524
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            1336813
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            1273174
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            1362539
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            1246563
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            1066584
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            601694
+          ]
+        ]
+      },
+      {
+        "title": "Prison and Criminal Justice",
+        "key_terms": [
+          {
+            "label": "prison",
+            "relevance": 17.1,
+            "count": 464,
+            "appearances": 516,
+            "distribution": 0.0046,
+            "est_total_count": 11847,
+            "est_total_appearances": 13175,
+            "positive_count": 60,
+            "negative_count": 255,
+            "est_total_positive_count": 1532,
+            "est_total_negative_count": 6511,
+            "positivity": 0.1905,
+            "sentimental": 0.6789,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "prison",
+                "prisons"
+              ]
+            }
+          },
+          {
+            "label": "sentence",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "sentence"
+            }
+          },
+          {
+            "label": "facing",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "facing"
+            }
+          },
+          {
+            "label": "Biden",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Biden"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "prison",
+                "prisons"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "sentence"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "facing"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "biden"
+            }
+          ]
+        },
+        "positivity": 0.19000000000000003,
+        "distribution": 0.05000000000000001,
+        "description": "A narrative with notably negative sentiment (19% positivity) focuses on criminal justice, incarceration, and legal penalties. References to \"prison,\" \"sentence,\" and individuals \"facing\" legal consequences suggest coverage of criminal proceedings and their outcomes.\n\nThe appearance of \"Biden\" in this context is interesting, potentially indicating discussions about the Biden administration's criminal justice policies or legal cases involving associates of the administration. \n\nVolume of this narrative increases toward the end of the analyzed period, with a notable uptick on March 20th, suggesting new developments in high-profile legal cases. This narrative connects to broader themes of justice, accountability, and criminal proceedings that appear throughout the dataset.",
+        "examples": [],
+        "peak_date": "2025-03-20",
+        "language": "en",
+        "personas": [
+          {
+            "title": "Conservative MAGA Commentators",
+            "gender": {
+              "m": 0.6200000000000001,
+              "f": 0.38000000000000006,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Media Professionals",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.25,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Creative Content Producers",
+            "gender": {
+              "m": 0.7500000000000001,
+              "f": 0.24000000000000002,
+              "n": 0.0031000000000000008
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Former Government Officials and Experts",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.26,
+              "n": 0.004000000000000001
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Liberal and Progressive Advocates",
+            "gender": {
+              "m": 0.55,
+              "f": 0.43000000000000005,
+              "n": 0.020000000000000004
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Criminal Justice Professionals",
+            "gender": {
+              "m": 0.77,
+              "f": 0.23,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Media Personalities and Hosts",
+            "gender": {
+              "m": 0.8,
+              "f": 0.2,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "News Organizations and Outlets",
+            "gender": {
+              "m": 0.7200000000000001,
+              "f": 0.27,
+              "n": 0.0012000000000000003
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Faith-Based Conservatives",
+            "gender": {
+              "m": 0.7600000000000001,
+              "f": 0.24000000000000002,
+              "n": 0.0014000000000000004
+            },
+            "color": "blue"
+          },
+          {
+            "title": "International Commentators",
+            "gender": {
+              "m": 0.6500000000000001,
+              "f": 0.35000000000000003,
+              "n": 0.0010000000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Social Justice Activists",
+            "gender": {
+              "m": 0.42000000000000004,
+              "f": 0.56,
+              "n": 0.020000000000000004
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Independent Media Creators",
+            "gender": {
+              "m": 0.6700000000000002,
+              "f": 0.33000000000000007,
+              "n": 0.0018000000000000004
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Cryptocurrency and Finance Commentators",
+            "gender": {
+              "m": 0.93,
+              "f": 0.07,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Personal Experience Sharers",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.27,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Academia and Policy Researchers",
+            "gender": {
+              "m": 0.8300000000000001,
+              "f": 0.17,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Entertainment and Pop Culture Commentators",
+            "gender": {
+              "m": 0.6600000000000001,
+              "f": 0.3400000000000001,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Location-Based News and Communities",
+            "gender": {
+              "m": 0.6400000000000001,
+              "f": 0.36000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Religious Prison Ministry Workers",
+            "gender": {
+              "m": 0.7200000000000001,
+              "f": 0.28,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Digital Entrepreneurs and Promoters",
+            "gender": {
+              "m": 0.77,
+              "f": 0.23,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Female Lifestyle and Community Builders",
+            "gender": {
+              "m": 0.29000000000000004,
+              "f": 0.7000000000000001,
+              "n": 0.010000000000000002
+            },
+            "color": "pink"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            235576
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            251866
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            250331
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            239610
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            196108
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            161708
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            205619
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            228928
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            246948
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            264055
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            244011
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            177382
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            163701
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            204550
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            230895
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            254538
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            259881
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            246623
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            202141
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            165922
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            199909
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            211152
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            216745
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            205073
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            207246
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            171164
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            174649
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            262407
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            242824
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            213906
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            109929
+          ]
+        ]
+      },
+      {
+        "title": "International Relations and Diplomacy",
+        "key_terms": [
+          {
+            "label": "United",
+            "relevance": 16.4,
+            "count": 524,
+            "appearances": 554,
+            "distribution": 0.0052,
+            "est_total_count": 13379,
+            "est_total_appearances": 14145,
+            "positive_count": 167,
+            "negative_count": 193,
+            "est_total_positive_count": 4264,
+            "est_total_negative_count": 4928,
+            "positivity": 0.4639,
+            "sentimental": 0.687,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "united",
+                "unit",
+                "unity",
+                "units",
+                "uniting"
+              ]
+            }
+          },
+          {
+            "label": "nationalist",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "nationalist"
+            }
+          },
+          {
+            "label": "agenda",
+            "relevance": 11.3,
+            "count": 380,
+            "appearances": 398,
+            "distribution": 0.0038,
+            "est_total_count": 9702,
+            "est_total_appearances": 10162,
+            "positive_count": 91,
+            "negative_count": 124,
+            "est_total_positive_count": 2323,
+            "est_total_negative_count": 3166,
+            "positivity": 0.4233,
+            "sentimental": 0.5658,
+            "language": "en",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "agenda",
+                "agendas"
+              ]
+            }
+          },
+          {
+            "label": "Western",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Western"
+            }
+          },
+          {
+            "label": "Yemen",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Yemen"
+            }
+          },
+          {
+            "label": "Houthis",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Houthis"
+            }
+          },
+          {
+            "label": "Taliban",
+            "query": {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "Taliban"
+            }
+          }
+        ],
+        "query": {
+          "op": "or",
+          "values": [
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "unit",
+                "united",
+                "uniting",
+                "units",
+                "unity"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "nationalist"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "values": [
+                "agenda",
+                "agendas"
+              ]
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "western"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "yemen"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "houthis"
+            },
+            {
+              "op": "contains",
+              "fields": [
+                "body",
+                "title"
+              ],
+              "value": "taliban"
+            }
+          ]
+        },
+        "positivity": 0.46,
+        "distribution": 0.05000000000000001,
+        "description": "A narrative focusing on international relations and global diplomacy emerges with moderate positive sentiment (46%). This narrative encompasses discussions of various international actors and conflicts beyond the major flashpoints covered in other narratives.\n\nReferences to \"Yemen\" and \"Houthis\" indicate coverage of the ongoing conflict in Yemen, while mentions of the \"Taliban\" suggest continued attention to Afghanistan following the US withdrawal. The association with \"American\" indicates a focus on US involvement or perspective on these situations.\n\nTerms like \"nationalist\" and \"agenda\" suggest analysis of motivations and ideological frameworks underpinning international relations. The moderate positivity score reflects a mix of neutral diplomatic reporting and more positive coverage of international cooperation efforts.\n\nThis narrative maintains fairly consistent coverage throughout the analyzed period, representing ongoing attention to global affairs and interconnections between various international actors and conflicts.",
+        "examples": [],
+        "peak_date": null,
+        "language": "en",
+        "personas": [
+          {
+            "title": "Football News and Transfer Updates",
+            "gender": {
+              "m": 0.8700000000000001,
+              "f": 0.13,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Official Media Channels",
+            "gender": {
+              "m": 0.7200000000000001,
+              "f": 0.28,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Political Commentators and Journalists",
+            "gender": {
+              "m": 0.78,
+              "f": 0.22000000000000003,
+              "n": 0.00010000000000000003
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Geopolitical and Conflict Analysts",
+            "gender": {
+              "m": 0.8800000000000001,
+              "f": 0.12000000000000001,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "American Conservative Voices",
+            "gender": {
+              "m": 0.7300000000000001,
+              "f": 0.26,
+              "n": 0.008800000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Pro-Palestinian Advocates",
+            "gender": {
+              "m": 0.6100000000000001,
+              "f": 0.37000000000000005,
+              "n": 0.019200000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Content Creators and Influencers",
+            "gender": {
+              "m": 0.55,
+              "f": 0.45,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Faith-Based Commentators",
+            "gender": {
+              "m": 0.7600000000000001,
+              "f": 0.24000000000000002,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Global News Aggregators",
+            "gender": {
+              "m": 0.81,
+              "f": 0.19000000000000003,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Ukrainian Conflict Observers",
+            "gender": {
+              "m": 0.77,
+              "f": 0.22000000000000003,
+              "n": 0.012700000000000003
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Entrepreneurial Business Networkers",
+            "gender": {
+              "m": 0.7200000000000001,
+              "f": 0.28,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Academic and Educational Voices",
+            "gender": {
+              "m": 0.6900000000000002,
+              "f": 0.30000000000000004,
+              "n": 0.004900000000000002
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Foreign Policy Specialists",
+            "gender": {
+              "m": 0.6400000000000001,
+              "f": 0.36000000000000004,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Creative and Artistic Community",
+            "gender": {
+              "m": 0.5800000000000001,
+              "f": 0.41000000000000003,
+              "n": 0.003500000000000001
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Indonesian and Asian Sports Enthusiasts",
+            "gender": {
+              "m": 0.51,
+              "f": 0.49000000000000005,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Lifestyle and Luxury Influencers",
+            "gender": {
+              "m": 0.36000000000000004,
+              "f": 0.6400000000000001,
+              "n": 0
+            },
+            "color": "pink"
+          },
+          {
+            "title": "Yemen Conflict Monitors",
+            "gender": {
+              "m": 0.8700000000000001,
+              "f": 0.13,
+              "n": 0
+            },
+            "color": "blue"
+          },
+          {
+            "title": "Digital Media Podcasters",
+            "gender": {
+              "m": 0.8400000000000001,
+              "f": 0.16000000000000003,
+              "n": 0.0013000000000000004
+            },
+            "color": "blue"
+          }
+        ],
+        "volume_data": [
+          [
+            "2025-02-18T00:00:00Z",
+            488635
+          ],
+          [
+            "2025-02-19T00:00:00Z",
+            497088
+          ],
+          [
+            "2025-02-20T00:00:00Z",
+            506466
+          ],
+          [
+            "2025-02-21T00:00:00Z",
+            508719
+          ],
+          [
+            "2025-02-22T00:00:00Z",
+            423302
+          ],
+          [
+            "2025-02-23T00:00:00Z",
+            338956
+          ],
+          [
+            "2025-02-24T00:00:00Z",
+            480134
+          ],
+          [
+            "2025-02-25T00:00:00Z",
+            485897
+          ],
+          [
+            "2025-02-26T00:00:00Z",
+            523589
+          ],
+          [
+            "2025-02-27T00:00:00Z",
+            490715
+          ],
+          [
+            "2025-02-28T00:00:00Z",
+            538429
+          ],
+          [
+            "2025-03-01T00:00:00Z",
+            429398
+          ],
+          [
+            "2025-03-02T00:00:00Z",
+            445402
+          ],
+          [
+            "2025-03-03T00:00:00Z",
+            524229
+          ],
+          [
+            "2025-03-04T00:00:00Z",
+            527316
+          ],
+          [
+            "2025-03-05T00:00:00Z",
+            533035
+          ],
+          [
+            "2025-03-06T00:00:00Z",
+            507895
+          ],
+          [
+            "2025-03-07T00:00:00Z",
+            476127
+          ],
+          [
+            "2025-03-08T00:00:00Z",
+            370923
+          ],
+          [
+            "2025-03-09T00:00:00Z",
+            391533
+          ],
+          [
+            "2025-03-10T00:00:00Z",
+            456437
+          ],
+          [
+            "2025-03-11T00:00:00Z",
+            505595
+          ],
+          [
+            "2025-03-12T00:00:00Z",
+            488448
+          ],
+          [
+            "2025-03-13T00:00:00Z",
+            480482
+          ],
+          [
+            "2025-03-14T00:00:00Z",
+            432326
+          ],
+          [
+            "2025-03-15T00:00:00Z",
+            375728
+          ],
+          [
+            "2025-03-16T00:00:00Z",
+            507389
+          ],
+          [
+            "2025-03-17T00:00:00Z",
+            510503
+          ],
+          [
+            "2025-03-18T00:00:00Z",
+            464176
+          ],
+          [
+            "2025-03-19T00:00:00Z",
+            404127
+          ],
+          [
+            "2025-03-20T00:00:00Z",
+            271974
+          ]
+        ]
+      }
+    ],
+    "conclusion": "This comprehensive analysis reveals a global information landscape dominated by geopolitical conflicts, domestic political tensions, and governance challenges across multiple regions. The Israel-Gaza conflict stands out as a particularly significant focal point, generating consistent coverage with predominantly negative sentiment. Similarly, the Ukraine-Russia conflict continues to command substantial attention.\n\nDomestic politics in major countries - particularly the United States and Turkey - feature prominently, with narratives reflecting deep polarization and institutional tensions. Legal challenges facing political figures, especially former President Trump, represent another significant theme.\n\nNotably, the overall sentiment across these political and conflict-focused narratives tends toward the negative, with few exceptions. The humanitarian/religious content and weather updates stand as the rare narratives with highly positive sentiment scores, creating a stark contrast with the predominantly negative tone of geopolitical and political coverage.\n\nTemporal analysis suggests some evolution in the volume of specific narratives, with certain topics like Turkish politics and American immigration discourse showing increased attention toward the end of the analyzed period. However, most major themes maintain relatively consistent coverage throughout, indicating their ongoing significance in global discourse.\n\nThe data also reveals interesting linguistic patterns, with Turkish-language content focusing almost exclusively on domestic Turkish politics, while English-language content spans global issues and multiple regional conflicts.\n\nOverall, this analysis captures a moment of significant global tension in March 2025, with democratic institutions under pressure, major armed conflicts ongoing, and political polarization affecting discourse across multiple countries and regions.",
+    "total_count": 2553243,
+    "positivity": 0.427,
+    "min_timestamp": "2025-03-19T19:59:11Z",
+    "max_timestamp": "2025-03-20T19:50:58Z"
+  }
+}
