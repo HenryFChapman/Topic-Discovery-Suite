@@ -692,6 +692,75 @@
     </div>
 
     <script>
+        const COLORS = {
+            primary: '#22aaff',
+            lightBlue: '#88ccff',
+            green: '#88dd11',
+            teal: '#22dddd',
+            red: '#ff3366',
+            pink: '#ee44ee'
+        };
+
+        const CHART_CONFIG = {
+            margin: {top: 30, right: 40, bottom: 120, left: 100},
+            width: 800,
+            height: 400,
+            legendItemHeight: 15,
+            legendPadding: 10,
+            itemsPerRow: 3
+        };
+
+        const LANGUAGES = {
+            en: 'English',
+            es: 'Spanish',
+            fr: 'French',
+            de: 'German',
+            it: 'Italian',
+            pt: 'Portuguese',
+            ru: 'Russian',
+            ja: 'Japanese',
+            ko: 'Korean',
+            zh: 'Chinese',
+            ar: 'Arabic',
+            hi: 'Hindi',
+            tr: 'Turkish',
+            nl: 'Dutch',
+            pl: 'Polish',
+            vi: 'Vietnamese',
+            th: 'Thai',
+            id: 'Indonesian'
+        };
+
+        const utils = {
+            formatDate: (dateString) => {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit'
+                });
+            },
+
+            formatNumber: (num) => new Intl.NumberFormat('en-US').format(num),
+
+            createElementWithClass: (tag, className) => {
+                const element = document.createElement(tag);
+                if (className) element.classList.add(className);
+                return element;
+            },
+
+            getLanguageName: (code) => LANGUAGES[code] || code.toUpperCase(),
+
+            parseMarkdown: (text) => {
+                if (!text) return '';
+                return text.replace(/\n/g, '<br>')
+                          .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                          .replace(/\*(.*?)\*/g, '<em>$1</em>');
+            }
+        };
+
         function parseMarkdown(text) {
             if (!text) return '';  // Handle null/undefined text
             return text.replace(/\n/g, '<br>')
@@ -755,9 +824,18 @@
                 .style("font-size", "12px")
                 .text("Post Volume");
 
-            // Use the site's color scheme
+            // Create line generator
+            const line = d3.line()
+                .x(d => x(d.date))
+                .y(d => y(d.value))
+                .curve(d3.curveMonotoneX);
+
+            // Sort narratives by distribution to match circle packing order
+            const sortedNarratives = narratives.sort((a, b) => b.distribution - a.distribution);
+            
+            // Use the site's color scheme in the same order as circle packing
             const colors = [
-                '#22aaff', // Primary blue
+                '#22aaff', // Primary blue - for largest distribution
                 '#88ccff', // Light blue
                 '#88dd11', // Green
                 '#22dddd', // Teal
@@ -765,15 +843,9 @@
                 '#ee44ee'  // Pink
             ];
 
-            // Create line generator
-            const line = d3.line()
-                .x(d => x(d.date))
-                .y(d => y(d.value))
-                .curve(d3.curveMonotoneX);
-
-            // Add the lines
+            // Add the lines with consistent color mapping
             const paths = svg.selectAll(".line")
-                .data(narratives)
+                .data(sortedNarratives)
                 .enter()
                 .append("path")
                 .attr("class", "line")
@@ -781,111 +853,144 @@
                 .style("fill", "none")
                 .style("stroke", (d, i) => colors[i % colors.length])
                 .style("stroke-width", 2)
-                .style("opacity", 0.7);
+                .style("opacity", 0.5)
+                .attr("id", d => `line-${d.title.replace(/\s+/g, '-').toLowerCase()}`);
 
-            // Add the overlay for mouse tracking (add this before using it)
-            const overlay = svg.append("rect")
-                .attr("class", "overlay")
-                .attr("width", width)
-                .attr("height", height)
-                .style("fill", "none")
-                .style("pointer-events", "all");
-
-            // Add the vertical line and date label
-            const dateLine = svg.append("line")
-                .attr("class", "date-line")
-                .style("stroke", "#223354")
-                .style("stroke-width", "1px")
-                .style("stroke-dasharray", "3,3")
-                .style("opacity", 0);
-
-            const dateLabel = svg.append("text")
-                .attr("class", "date-label")
-                .attr("text-anchor", "middle")
-                .attr("y", -10)
-                .style("fill", "#445566")
-                .style("font-size", "12px")
-                .style("opacity", 0);
-
-            // Mouse handling
-            overlay
-                .on("mouseover", function() {
-                    dateLine.style("opacity", 1);
-                    dateLabel.style("opacity", 1);
-                })
-                .on("mouseout", function() {
-                    dateLine.style("opacity", 0);
-                    dateLabel.style("opacity", 0);
-                })
-                .on("mousemove", function(event) {
-                    const [mouseX] = d3.pointer(event);
-                    const date = x.invert(mouseX);
-
-                    // Update date line
-                    dateLine
-                        .attr("x1", mouseX)
-                        .attr("x2", mouseX)
-                        .attr("y1", 0)
-                        .attr("y2", height);
-
-                    // Update date label
-                    dateLabel
-                        .attr("x", mouseX)
-                        .attr("y", -10)
-                        .text(d3.timeFormat("%b %d, %Y")(date));
-                });
-
-            // Update legend text styling and positioning
-            const legendWidth = width;
-            const itemsPerRow = 3;
-            const itemWidth = legendWidth / itemsPerRow;
-            const legendItemHeight = 15;    // Reduced from 20
-            const legendPadding = 10;       // Reduced from 15
-            
-            const legend = svg.append("g")
-                .attr("class", "legend")
-                .attr("transform", `translate(0, ${height + 25})`); // Reduced from 30
-
-            narratives.forEach((narrative, i) => {
-                const row = Math.floor(i / itemsPerRow);
-                const col = i % itemsPerRow;
+            // Create focus groups with same ordering
+            const focusGroups = sortedNarratives.map((narrative, i) => {
+                const group = svg.append('g');
                 
-                const legendItem = legend.append("g")
-                    .attr("transform", `translate(${col * itemWidth}, ${row * (legendItemHeight + 3)})`); // Reduced spacing between rows from 5 to 3
+                // Add the circle that travels along the curve
+                const focus = group.append('circle')
+                    .style("fill", "white")
+                    .attr("stroke", colors[i % colors.length])
+                    .attr("stroke-width", 2)
+                    .attr('r', 4)
+                    .style("opacity", 0);
 
-                legendItem.append("line")
-                    .attr("x1", 0)
-                    .attr("x2", 20)         // Increased line length
-                    .attr("y1", 7)
-                    .attr("y2", 7)
-                    .style("stroke", colors[i % colors.length])
-                    .style("stroke-width", 2);
+                // Add the text label that travels along the curve
+                const focusText = group.append('text')
+                    .style("opacity", 0)
+                    .attr("text-anchor", "left")
+                    .attr("alignment-baseline", "middle")
+                    .style("font-size", "12px")
+                    .style("fill", "#445566");
 
-                legendItem.append("text")
-                    .attr("x", 25)          // Increased text offset
-                    .attr("y", 7)
-                    .attr("dy", ".35em")
-                    .style("fill", "#445566")
-                    .style("font-size", "12px")  // Increased font size
-                    .text(narrative.title);
-
-                // Handle text truncation
-                const text = legendItem.select("text");
-                const maxTextWidth = itemWidth - 35;
-                let title = narrative.title;
-                while (text.node().getComputedTextLength() > maxTextWidth && title.length > 0) {
-                    title = title.slice(0, -1);
-                    text.text(title + '...');
-                }
+                return { focus, focusText, narrative, color: colors[i % colors.length] };
             });
 
-            // Update SVG height calculation to be more compact
-            const totalRows = Math.ceil(narratives.length / itemsPerRow);
-            const legendHeight = (totalRows * (legendItemHeight + 3)) + legendPadding; // Adjusted calculation
-            const newHeight = height + margin.top + margin.bottom + legendHeight;
+            // Create a rect for mouse tracking
+            const mouseTracker = svg.append('rect')
+                .style("fill", "none")
+                .style("pointer-events", "all")
+                .attr('width', width)
+                .attr('height', height)
+                .on('mouseover', mouseover)
+                .on('mousemove', mousemove)
+                .on('mouseout', mouseout);
 
-            d3.select("#ridgeline-plot svg")
-                .attr("height", newHeight);
+            function mouseover() {
+                focusGroups.forEach(({ focus, focusText }) => {
+                    focus.style("opacity", 1);
+                    focusText.style("opacity", 1);
+                });
+            }
+
+            function mousemove(event) {
+                const [mouseX] = d3.pointer(event);
+                const date = x.invert(mouseX);
+                
+                // Find the closest point to the mouse for each line
+                const closestPoints = focusGroups.map(({ narrative }) => {
+                    const bisect = d3.bisector(d => d.date).left;
+                    const index = bisect(narrative.volume_data, date);
+                    const dataPoint = narrative.volume_data[index];
+                    if (!dataPoint) return null;
+
+                    // Calculate distance from mouse to point
+                    const xDistance = Math.abs(x(dataPoint.date) - mouseX);
+                    const yDistance = Math.abs(y(dataPoint.value) - d3.pointer(event)[1]);
+                    const distance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+
+                    return { narrative, dataPoint, distance };
+                }).filter(Boolean);
+
+                // Find the closest line to the mouse
+                const closest = closestPoints.reduce((min, current) => 
+                    current.distance < min.distance ? current : min
+                );
+
+                // Reset all lines to default state
+                paths.style("opacity", 0.2)
+                     .style("stroke-width", 2);
+                
+                // Hide all focus points and labels
+                focusGroups.forEach(({ focus, focusText }) => {
+                    focus.style("opacity", 0);
+                    focusText.style("opacity", 0);
+                });
+
+                // Only highlight and show data for the closest line
+                const activeFocusGroup = focusGroups.find(group => 
+                    group.narrative.title === closest.narrative.title
+                );
+
+                if (activeFocusGroup) {
+                    const { focus, focusText, color } = activeFocusGroup;
+                    const { narrative, dataPoint } = closest;
+
+                    // Highlight the active line
+                    d3.select(`#line-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`)
+                        .style("opacity", 1)
+                        .style("stroke-width", 3);
+
+                    // Show and position the focus point
+                    focus
+                        .style("opacity", 1)
+                        .attr("cx", x(dataPoint.date))
+                        .attr("cy", y(dataPoint.value));
+
+                    // Show and position the text label
+                    focusText
+                        .style("opacity", 1)
+                        .html(`${narrative.title}: ${d3.format(",")(dataPoint.value)} posts`)
+                        .attr("x", x(dataPoint.date) + 15)
+                        .attr("y", y(dataPoint.value) - 10)
+                        .style("fill", color);
+                }
+
+                // Update date label at the bottom
+                const dateLabel = svg.select(".date-label");
+                if (dateLabel.empty()) {
+                    svg.append("text")
+                        .attr("class", "date-label")
+                        .attr("text-anchor", "middle")
+                        .style("fill", "#445566")
+                        .style("font-size", "12px");
+                }
+                svg.select(".date-label")
+                    .attr("x", x(date))
+                    .attr("y", height + 20)
+                    .text(d3.timeFormat("%B %d, %Y")(date));
+            }
+
+            function mouseout() {
+                // Reset all lines to default state
+                paths.style("opacity", 0.5)
+                     .style("stroke-width", 2);
+
+                focusGroups.forEach(({ focus, focusText }) => {
+                    focus.style("opacity", 0);
+                    focusText.style("opacity", 0);
+                });
+
+                // Remove date label
+                svg.select(".date-label").text("");
+            }
+
+            // Remove the old tooltip and overlay paths
+            d3.select("#ridgeline-plot .tooltip").remove();
+            svg.selectAll(".overlay-path").remove();
         }
 
         function getLanguageName(code) {
@@ -912,116 +1017,105 @@
             return languages[code] || code.toUpperCase();
         }
 
-        function initializeTableOfContents() {
-            const toc = document.getElementById('toc');
-            const sections = [
-                { id: 'introduction', label: 'Introduction' },
-                { id: 'my_dataviz', label: 'Topic Distribution' },
-                { id: 'ridgeline-plot', label: 'Volume Trends' },
-                { type: 'narratives', label: 'Narrative Analysis' }
-            ];
+        class TableOfContents {
+            static initialize() {
+                const sections = [
+                    { id: 'introduction', label: 'Introduction' },
+                    { id: 'my_dataviz', label: 'Topic Distribution' },
+                    { id: 'ridgeline-plot', label: 'Volume Trends' },
+                    { type: 'narratives', label: 'Narrative Analysis' }
+                ];
 
-            sections.forEach(section => {
-                const li = document.createElement('li');
-                li.className = 'toc-item';
-                
-                if (section.type === 'narratives') {
-                    li.innerHTML = `
-                        <a href="#narratives" class="toc-link">${section.label}</a>
-                        <ul class="narrative-submenu" style="list-style: none; padding-left: 20px; margin: 5px 0;"></ul>
-                    `;
-                } else {
-                    li.innerHTML = `<a href="#${section.id}" class="toc-link">${section.label}</a>`;
-                }
-                toc.appendChild(li);
-            });
+                const toc = document.getElementById('toc');
+                this.renderSections(toc, sections);
+                this.initializeObserver();
+                this.setupEventListeners();
+            }
 
-            // Add conclusion after narratives
-            const conclusionItem = document.createElement('li');
-            conclusionItem.className = 'toc-item';
-            conclusionItem.innerHTML = `<a href="#conclusion" class="toc-link">Key Findings</a>`;
-            toc.appendChild(conclusionItem);
-
-            // Add narrative titles to submenu
-            const submenu = document.querySelector('.narrative-submenu');
-            document.querySelectorAll('.narrative').forEach(narrative => {
-                const title = narrative.querySelector('h2').textContent;
-                const id = narrative.id;
-                const li = document.createElement('li');
-                li.className = 'toc-item';
-                li.innerHTML = `<a href="#${id}" class="toc-link narrative-link">${title}</a>`;
-                submenu.appendChild(li);
-            });
-
-            // Update the observer to handle narrative sections
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const id = entry.target.getAttribute('id');
-                    const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+            static renderSections(toc, sections) {
+                sections.forEach(section => {
+                    const li = document.createElement('li');
+                    li.className = 'toc-item';
                     
-                    if (tocLink) {
-                        if (entry.isIntersecting) {
-                            // First, remove active class from all links
-                            document.querySelectorAll('.toc-link').forEach(link => {
-                                link.classList.remove('active');
-                            });
-                            
-                            // Add active class to current link
-                            tocLink.classList.add('active');
-                            
-                            // If it's a narrative, also highlight the parent section
-                            if (tocLink.classList.contains('narrative-link')) {
-                                document.querySelector('.toc-link[href="#narratives"]').classList.add('active');
-                            }
-                        } else {
-                            // When section is no longer intersecting
-                            tocLink.classList.remove('active');
-                            
-                            // Find the currently most visible section
-                            const visibleSections = Array.from(document.querySelectorAll('.narrative, #title, #introduction, #my_dataviz, #ridgeline-plot, #conclusion'))
-                                .filter(el => {
-                                    const rect = el.getBoundingClientRect();
-                                    return rect.top < window.innerHeight * 0.5 && rect.bottom > 0;
+                    if (section.type === 'narratives') {
+                        li.innerHTML = `
+                            <a href="#narratives" class="toc-link">${section.label}</a>
+                            <ul class="narrative-submenu" style="list-style: none; padding-left: 20px; margin: 5px 0;"></ul>
+                        `;
+                        
+                        // Add narratives to submenu after JSON data is loaded
+                        fetch('infegy_summary.json')
+                            .then(response => response.json())
+                            .then(jsonData => {
+                                const submenu = li.querySelector('.narrative-submenu');
+                                jsonData.output.narratives.forEach(narrative => {
+                                    const narrativeId = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
+                                    const narrativeLi = document.createElement('li');
+                                    narrativeLi.className = 'toc-item';
+                                    narrativeLi.innerHTML = `
+                                        <a href="#${narrativeId}" class="toc-link narrative-link">${narrative.title}</a>
+                                    `;
+                                    submenu.appendChild(narrativeLi);
                                 });
-                            
-                            if (visibleSections.length > 0) {
-                                const mostVisible = visibleSections[0];
-                                const mostVisibleId = mostVisible.getAttribute('id');
-                                const mostVisibleLink = document.querySelector(`.toc-link[href="#${mostVisibleId}"]`);
+                            })
+                            .catch(error => console.error('Error loading narratives:', error));
+                    } else {
+                        li.innerHTML = `<a href="#${section.id}" class="toc-link">${section.label}</a>`;
+                    }
+                    toc.appendChild(li);
+                });
+
+                // Add conclusion after narratives
+                const conclusionItem = document.createElement('li');
+                conclusionItem.className = 'toc-item';
+                conclusionItem.innerHTML = `<a href="#conclusion" class="toc-link">Key Findings</a>`;
+                toc.appendChild(conclusionItem);
+            }
+
+            static initializeObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        const id = entry.target.getAttribute('id');
+                        const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
+                        
+                        if (tocLink) {
+                            if (entry.isIntersecting) {
+                                document.querySelectorAll('.toc-link').forEach(link => {
+                                    link.classList.remove('active');
+                                });
+                                tocLink.classList.add('active');
                                 
-                                if (mostVisibleLink) {
-                                    mostVisibleLink.classList.add('active');
-                                    
-                                    // If it's a narrative, highlight the parent section
-                                    if (mostVisibleLink.classList.contains('narrative-link')) {
-                                        document.querySelector('.toc-link[href="#narratives"]').classList.add('active');
-                                    }
+                                // If this is a narrative link, also highlight the parent section
+                                if (tocLink.classList.contains('narrative-link')) {
+                                    document.querySelector('.toc-link[href="#narratives"]').classList.add('active');
                                 }
                             }
                         }
-                    }
+                    });
+                }, { 
+                    threshold: 0.2,
+                    rootMargin: '-20% 0px -60% 0px'
                 });
-            }, { 
-                threshold: 0.2,
-                rootMargin: '-20% 0px -60% 0px'
-            });
 
-            // Observe all sections including narratives
-            document.querySelectorAll('.narrative, #title, #introduction, #my_dataviz, #ridgeline-plot, #conclusion').forEach(element => {
-                observer.observe(element);
-            });
+                // Observe all sections including individual narratives
+                document.querySelectorAll('.narrative, #title, #introduction, #my_dataviz, #ridgeline-plot, #conclusion')
+                    .forEach(element => {
+                        observer.observe(element);
+                    });
+            }
 
-            // Smooth scroll to sections
-            document.querySelectorAll('.toc-link').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').slice(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+            static setupEventListeners() {
+                document.querySelectorAll('.toc-link').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetId = link.getAttribute('href').slice(1);
+                        const targetElement = document.getElementById(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
                 });
-            });
+            }
         }
 
         fetch('infegy_summary.json')
@@ -1059,99 +1153,7 @@
                 const narrativesContainer = document.getElementById("narratives");
 
                 jsonData.output.narratives.forEach(narrative => {
-                    let narrativeDiv = document.createElement("div");
-                    narrativeDiv.classList.add("narrative");
-                    narrativeDiv.id = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
-
-                    let h2 = document.createElement("h2");
-                    h2.textContent = narrative.title;
-
-                    let statsDiv = document.createElement("div");
-                    statsDiv.classList.add("narrative-stats");
-
-                    // Calculate total posts by summing est_total_count from all key terms
-                    const totalPosts = narrative.key_terms.reduce((sum, term) => {
-                        return sum + (term.est_total_count || 0);
-                    }, 0);
-
-                    statsDiv.innerHTML = `
-                        <div class="stat-item sentiment-stat">
-                            <div class="stat-label">Sentiment Score</div>
-                            <div class="stat-value">${(narrative.positivity * 100).toFixed(1)}%</div>
-                        </div>
-                        <div class="stat-item distribution-stat">
-                            <div class="stat-label">Topic Distribution</div>
-                            <div class="stat-value">${(narrative.distribution * 100).toFixed(1)}%</div>
-                        </div>
-                        <div class="stat-item volume-stat">
-                            <div class="stat-label">Total Posts</div>
-                            <div class="stat-value">${new Intl.NumberFormat('en-US').format(totalPosts)}</div>
-                        </div>
-                        <div class="stat-item language-stat">
-                            <div class="stat-label">Language</div>
-                            <div class="stat-value">${getLanguageName(narrative.language)}</div>
-                        </div>`;
-
-                    let keyTermsContainer = document.createElement("div");
-                    keyTermsContainer.innerHTML = "<h3>Key Topics:</h3>";
-                    let ulKeyTerms = document.createElement("ul");
-                    ulKeyTerms.classList.add("key-terms");
-
-                    narrative.key_terms.slice(0, 10).forEach(term => {
-                        let li = document.createElement("li");
-                        li.textContent = term.label;
-                        li.classList.add(term.positivity >= 0.5 ? "positive" : "negative");
-                        ulKeyTerms.appendChild(li);
-                    });
-                    keyTermsContainer.appendChild(ulKeyTerms);
-
-                    let descriptionContainer = document.createElement("div");
-                    descriptionContainer.innerHTML = `<p>${parseMarkdown(narrative.description)}</p>`;
-
-                    // Add new example posts section
-                    let examplesContainer = document.createElement("div");
-                    if (narrative.examples && narrative.examples.length > 0) {
-                        examplesContainer.innerHTML = "<h3>Example Posts:</h3>";
-                        let examplesList = document.createElement("div");
-                        examplesList.classList.add("example-posts");
-                        
-                        // Ensure we're getting the examples array correctly
-                        const examples = Array.isArray(narrative.examples) ? narrative.examples : [narrative.examples];
-                        
-                        examples.forEach(example => {
-                            let exampleDiv = document.createElement("div");
-                            exampleDiv.classList.add("example-post");
-                            // Handle both string and object examples
-                            const exampleText = typeof example === 'object' ? example.text || example.content : example;
-                            exampleDiv.innerHTML = parseMarkdown(exampleText);
-                            examplesList.appendChild(exampleDiv);
-                        });
-                        
-                        examplesContainer.appendChild(examplesList);
-                    }
-
-                    let personasContainer = document.createElement("div");
-                    personasContainer.innerHTML = "<h3>Personas:</h3>";
-                    let ulPersonas = document.createElement("ul");
-                    ulPersonas.classList.add("personas");
-
-                    narrative.personas.slice(0, 10).forEach(persona => {
-                        let li = document.createElement("li");
-                        li.textContent = persona.title;
-                        li.classList.add(persona.gender.m > persona.gender.f ? "male" : "female");
-                        ulPersonas.appendChild(li);
-                    });
-                    personasContainer.appendChild(ulPersonas);
-
-                    // Add the examples container before personas
-                    narrativeDiv.appendChild(h2);
-                    narrativeDiv.appendChild(statsDiv);
-                    narrativeDiv.appendChild(keyTermsContainer);
-                    narrativeDiv.appendChild(descriptionContainer);
-                    if (examplesContainer.children.length > 0) {
-                        narrativeDiv.appendChild(examplesContainer);
-                    }
-                    narrativeDiv.appendChild(personasContainer);
+                    let narrativeDiv = NarrativeBuilder.createNarrative(narrative);
                     narrativesContainer.appendChild(narrativeDiv);
                 });
 
@@ -1346,9 +1348,152 @@
                 createLineGraph(jsonData);
 
                 // Initialize table of contents after content is loaded
-                initializeTableOfContents();
+                TableOfContents.initialize();
             })
             .catch(error => console.error('Error loading JSON:', error));
+
+        class TopicVisualization {
+            constructor(data, container) {
+                this.data = data;
+                this.container = container;
+                this.width = CHART_CONFIG.width - CHART_CONFIG.margin.left - CHART_CONFIG.margin.right;
+                this.height = CHART_CONFIG.height - CHART_CONFIG.margin.top - CHART_CONFIG.margin.bottom;
+            }
+
+            createSVG() {
+                return d3.select(this.container)
+                    .append("svg")
+                    .attr("width", this.width + CHART_CONFIG.margin.left + CHART_CONFIG.margin.right)
+                    .attr("height", this.height + CHART_CONFIG.margin.top + CHART_CONFIG.margin.bottom)
+                    .append("g")
+                    .attr("transform", `translate(${CHART_CONFIG.margin.left},${CHART_CONFIG.margin.top})`);
+            }
+
+            createScales() {
+                const x = d3.scaleTime()
+                    .domain(d3.extent(this.data[0].volume_data, d => d.date))
+                    .range([0, this.width]);
+
+                const y = d3.scaleLinear()
+                    .domain([0, d3.max(this.data, n => d3.max(n.volume_data, d => d.value))])
+                    .range([this.height, 0]);
+
+                return { x, y };
+            }
+
+            // ... Add other visualization methods here
+        }
+
+        class NarrativeBuilder {
+            static createNarrative(narrative) {
+                const narrativeDiv = utils.createElementWithClass('div', 'narrative');
+                narrativeDiv.id = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
+
+                const components = [
+                    this.createHeader(narrative),
+                    this.createStats(narrative),
+                    this.createKeyTerms(narrative),
+                    this.createDescription(narrative),
+                    this.createExamples(narrative),
+                    this.createPersonas(narrative)
+                ];
+
+                components.forEach(component => {
+                    if (component) narrativeDiv.appendChild(component);
+                });
+
+                return narrativeDiv;
+            }
+
+            static createHeader(narrative) {
+                const header = document.createElement('h2');
+                header.textContent = narrative.title;
+                return header;
+            }
+
+            static createStats(narrative) {
+                const totalPosts = narrative.key_terms.reduce((sum, term) => sum + (term.est_total_count || 0), 0);
+                
+                const stats = [
+                    {label: 'Sentiment Score', value: `${(narrative.positivity * 100).toFixed(1)}%`, class: 'sentiment-stat'},
+                    {label: 'Topic Distribution', value: `${(narrative.distribution * 100).toFixed(1)}%`, class: 'distribution-stat'},
+                    {label: 'Total Posts', value: utils.formatNumber(totalPosts), class: 'volume-stat'},
+                    {label: 'Language', value: utils.getLanguageName(narrative.language), class: 'language-stat'}
+                ];
+
+                const statsDiv = utils.createElementWithClass('div', 'narrative-stats');
+                statsDiv.innerHTML = stats.map(stat => `
+                    <div class="stat-item ${stat.class}">
+                        <div class="stat-label">${stat.label}</div>
+                        <div class="stat-value">${stat.value}</div>
+                    </div>
+                `).join('');
+
+                return statsDiv;
+            }
+
+            static createKeyTerms(narrative) {
+                const container = document.createElement('div');
+                const heading = document.createElement('h3');
+                heading.textContent = 'Key Topics:';
+                container.appendChild(heading);
+
+                const ul = utils.createElementWithClass('ul', 'key-terms');
+                narrative.key_terms.slice(0, 10).forEach(term => {
+                    const li = document.createElement('li');
+                    li.textContent = term.label;
+                    li.classList.add(term.positivity >= 0.5 ? 'positive' : 'negative');
+                    ul.appendChild(li);
+                });
+
+                container.appendChild(ul);
+                return container;
+            }
+
+            static createDescription(narrative) {
+                const container = document.createElement('div');
+                container.innerHTML = `<p>${utils.parseMarkdown(narrative.description)}</p>`;
+                return container;
+            }
+
+            static createExamples(narrative) {
+                if (!narrative.examples || !narrative.examples.length) {
+                    return null;
+                }
+
+                const container = document.createElement('div');
+                container.innerHTML = '<h3>Example Posts:</h3>';
+                
+                const examplesList = utils.createElementWithClass('div', 'example-posts');
+                const examples = Array.isArray(narrative.examples) ? narrative.examples : [narrative.examples];
+                
+                examples.forEach(example => {
+                    const exampleDiv = utils.createElementWithClass('div', 'example-post');
+                    const exampleText = typeof example === 'object' ? example.text || example.content : example;
+                    exampleDiv.innerHTML = utils.parseMarkdown(exampleText);
+                    examplesList.appendChild(exampleDiv);
+                });
+
+                container.appendChild(examplesList);
+                return container;
+            }
+
+            static createPersonas(narrative) {
+                const container = document.createElement('div');
+                container.innerHTML = '<h3>Personas:</h3>';
+                
+                const ul = utils.createElementWithClass('ul', 'personas');
+                narrative.personas.slice(0, 10).forEach(persona => {
+                    const li = document.createElement('li');
+                    li.textContent = persona.title;
+                    li.classList.add(persona.gender.m > persona.gender.f ? 'male' : 'female');
+                    ul.appendChild(li);
+                });
+
+                container.appendChild(ul);
+                return container;
+            }
+        }
     </script>
 </body>
 </html>
