@@ -51,6 +51,8 @@
             border: 1px solid #e8eaf2;
             text-align: left;
             transition: box-shadow 0.3s ease;
+            margin-bottom: 30px;
+            scroll-margin-top: 100px;
         }
         .narrative h2 {
             font-size: 1.4em;
@@ -101,8 +103,9 @@
         #my_dataviz {
             width: 100%;
             max-width: 800px;
-            height: 300px;
+            height: 800px;
             margin: 0 auto;
+            overflow: visible;
         }
         .tooltip {
             position: absolute;
@@ -466,7 +469,7 @@
         .toc-container {
             position: sticky;
             top: 20px;
-            height: calc(100vh - 40px);
+            height: fit-content;
             min-width: 250px;
             max-width: 250px;
             background: white;
@@ -504,6 +507,7 @@
             border-radius: 6px;
             transition: all 0.2s ease;
             font-size: 0.9em;
+            position: relative;
         }
 
         .toc-link:hover {
@@ -517,60 +521,38 @@
             font-weight: 500;
         }
 
-        .narrative-title {
-            font-size: 0.85em;
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-
-        @media (max-width: 1024px) {
-            .page-layout {
-                flex-direction: column;
-            }
-
-            .toc-container {
-                position: relative;
-                top: 0;
-                height: auto;
-                max-width: none;
-                margin-bottom: 20px;
-            }
-
-            .toc-list {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            .toc-item {
-                margin-bottom: 0;
-            }
-
-            .narrative-title {
-                padding-left: 0;
-                margin-top: 0;
-            }
+        .toc-link.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #22aaff;
+            border-radius: 0 2px 2px 0;
         }
 
         .narrative-submenu {
             margin-top: 5px;
-        }
-
-        .narrative-link {
-            font-size: 0.85em;
-            padding: 6px 12px;
+            padding-left: 20px !important;
+            border-left: 2px solid #e8eaf2;
+            list-style: none;
         }
 
         .toc-link.narrative-link {
+            padding-left: 15px;
+            font-size: 0.85em;
             color: #445566;
-        }
-
-        .toc-link.narrative-link:hover {
-            color: #22aaff;
         }
 
         .toc-link.narrative-link.active {
             background: #e8f5ff;
+            color: #22aaff;
+            font-weight: 500;
+        }
+
+        .toc-link.narrative-link:hover {
+            background: #f8f9fa;
             color: #22aaff;
         }
 
@@ -587,6 +569,121 @@
 
         .viz-title[style*="margin-top"] {
             margin-top: 20px !important;
+        }
+
+        .toggle-icon {
+            float: right;
+            font-size: 0.8em;
+            margin-left: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .nested-submenu {
+            transition: all 0.3s ease;
+        }
+
+        .nested-link {
+            font-size: 0.8em;
+            padding: 4px 12px !important;
+            color: #667788 !important;
+        }
+
+        .nested-viz {
+            position: relative;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e8eaf2;
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow: visible;
+        }
+
+        .nested-viz .tooltip {
+            position: absolute;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e8eaf2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 0.9em;
+            line-height: 1.4;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .nested-viz .tooltip strong {
+            color: #223354;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .nested-narrative {
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .nested-narrative-details {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .nested-viz circle {
+            transition: all 0.3s ease;
+        }
+
+        .nested-viz text {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+        }
+
+        .node-link {
+            fill: none;
+            stroke: #e8eaf2;
+            stroke-width: 1.5;
+            transition: stroke 0.3s ease, stroke-width 0.3s ease;
+        }
+
+        .node circle {
+            transition: all 0.3s ease;
+        }
+
+        .node text {
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .nested-subtopic-label {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+            opacity: 0;
+            transform: translateX(-10px);
+            animation: slideIn 0.3s ease forwards;
+            padding-left: 20px !important;
+            border-left: 2px solid #e8eaf2;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .nested-subtopic-label .toc-link {
+            color: #22aaff !important;
+            font-size: 0.8em !important;
+            padding-left: 35px !important;
+            font-style: normal;
+        }
+
+        .nested-subtopic-label .toc-link:hover {
+            background: #f8f9fa;
+        }
+
+        .nested-subtopic-label .toc-link.active {
+            background: #e8f5ff;
         }
     </style>
 </head>
@@ -628,12 +725,11 @@
                 <div class="viz-instructions">
                     <strong>Circle size</strong> represents topic distribution percentage
                     <span>•</span>
+                    <strong>Circle color</strong> indicates sentiment (red=negative, blue=neutral, green=positive)
+                    <span>•</span>
                     <strong>Click any circle</strong> to jump to its detailed analysis
-                </div>
+        </div>
                 <div id="my_dataviz"></div>
-                
-                <div class="viz-title" style="margin-top: 40px;">Volume Trends Over Time</div>
-                <div id="ridgeline-plot"></div>
             </div>
 
             <div class="section-header">
@@ -671,18 +767,7 @@
             <div class="section-header">
                 <h2>Narrative Analysis</h2>
             </div>
-            <div class="section-description" style="margin: 0 0 30px 0; color: #445566; line-height: 1.6; font-size: 1.1em;">
-                This section breaks down each identified narrative in detail. For each narrative, you'll find:
-                <ul style="margin: 10px 0 0 20px; padding: 0;">
-                    <li>Key statistics including sentiment score, topic distribution, total post volume, and primary language</li>
-                    <li>Most relevant topics and terms associated with the narrative</li>
-                    <li>Detailed description of the narrative's content and significance</li>
-                    <li>Representative example posts that typify the narrative</li>
-                    <li>Demographic information about the personas discussing these topics</li>
-                </ul>
-                Click on any circle in the Topic Distribution visualization above to jump directly to its corresponding narrative analysis.
-            </div>
-            <div class="narrative-container" id="narratives"></div>
+        <div class="narrative-container" id="narratives"></div>
             
             <div class="section-header">
                 <h2>Key Findings</h2>
@@ -783,13 +868,21 @@
                 .attr("transform", `translate(${margin.left},${margin.top})`);
 
             // Prepare the data
-            const narratives = data.output.narratives.map(n => ({
-                ...n,
-                volume_data: n.volume_data.map(d => ({
-                    date: new Date(d[0]),
-                    value: d[1]
-                }))
-            }));
+            const narratives = data.output.narratives
+                .filter(n => n.volume_data && Array.isArray(n.volume_data)) // Only include narratives with valid volume_data
+                .map(n => ({
+                    ...n,
+                    volume_data: n.volume_data.map(d => ({
+                        date: new Date(d[0]),
+                        value: d[1]
+                    }))
+                }));
+
+            // Check if we have any valid data to display
+            if (!narratives.length || !narratives[0].volume_data.length) {
+                console.warn("No valid volume data found for line graph");
+                return;
+            }
             
             // Create scales
             const x = d3.scaleTime()
@@ -1022,14 +1115,12 @@
                 const sections = [
                     { id: 'introduction', label: 'Introduction' },
                     { id: 'my_dataviz', label: 'Topic Distribution' },
-                    { id: 'ridgeline-plot', label: 'Volume Trends' },
-                    { type: 'narratives', label: 'Narrative Analysis' }
+                    { type: 'narratives', label: 'Narratives' },
+                    { id: 'conclusion', label: 'Key Findings' }
                 ];
 
                 const toc = document.getElementById('toc');
                 this.renderSections(toc, sections);
-                this.initializeObserver();
-                this.setupEventListeners();
             }
 
             static renderSections(toc, sections) {
@@ -1039,85 +1130,97 @@
                     
                     if (section.type === 'narratives') {
                         li.innerHTML = `
-                            <a href="#narratives" class="toc-link">${section.label}</a>
-                            <ul class="narrative-submenu" style="list-style: none; padding-left: 20px; margin: 5px 0;"></ul>
+                            <a href="#narratives" class="toc-link">
+                                ${section.label}
+                            </a>
+                            <ul class="narrative-submenu"></ul>
                         `;
-                        
-                        // Add narratives to submenu after JSON data is loaded
-                        fetch('infegy_summary.json')
-                            .then(response => response.json())
-                            .then(jsonData => {
-                                const submenu = li.querySelector('.narrative-submenu');
-                                jsonData.output.narratives.forEach(narrative => {
-                                    const narrativeId = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
-                                    const narrativeLi = document.createElement('li');
-                                    narrativeLi.className = 'toc-item';
-                                    narrativeLi.innerHTML = `
-                                        <a href="#${narrativeId}" class="toc-link narrative-link">${narrative.title}</a>
-                                    `;
-                                    submenu.appendChild(narrativeLi);
-                                });
-                            })
-                            .catch(error => console.error('Error loading narratives:', error));
                     } else {
                         li.innerHTML = `<a href="#${section.id}" class="toc-link">${section.label}</a>`;
                     }
                     toc.appendChild(li);
                 });
-
-                // Add conclusion after narratives
-                const conclusionItem = document.createElement('li');
-                conclusionItem.className = 'toc-item';
-                conclusionItem.innerHTML = `<a href="#conclusion" class="toc-link">Key Findings</a>`;
-                toc.appendChild(conclusionItem);
             }
 
             static initializeObserver() {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         const id = entry.target.getAttribute('id');
+                        if (!id) return;
+
+                        // Find the corresponding TOC link
                         const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
-                        
-                        if (tocLink) {
-                            if (entry.isIntersecting) {
-                                document.querySelectorAll('.toc-link').forEach(link => {
-                                    link.classList.remove('active');
-                                });
-                                tocLink.classList.add('active');
-                                
-                                // If this is a narrative link, also highlight the parent section
-                                if (tocLink.classList.contains('narrative-link')) {
-                                    document.querySelector('.toc-link[href="#narratives"]').classList.add('active');
+                        if (!tocLink) return;
+
+                        if (entry.isIntersecting) {
+                            // Remove active class from all links
+                            document.querySelectorAll('.toc-link').forEach(link => {
+                                link.classList.remove('active');
+                            });
+                            
+                            // Add active class to the current link
+                            tocLink.classList.add('active');
+
+                            // If this is a narrative, also highlight the "Narratives" parent section
+                            if (id.startsWith('narrative-')) {
+                                const narrativesLink = document.querySelector('.toc-link[href="#narratives"]');
+                                if (narrativesLink) {
+                                    narrativesLink.classList.add('active');
                                 }
                             }
                         }
                     });
                 }, { 
-                    threshold: 0.2,
-                    rootMargin: '-20% 0px -60% 0px'
+                    threshold: [0, 0.25, 0.5, 0.75, 1],
+                    rootMargin: '-10% 0px -70% 0px'
                 });
 
-                // Observe all sections including individual narratives
-                document.querySelectorAll('.narrative, #title, #introduction, #my_dataviz, #ridgeline-plot, #conclusion')
-                    .forEach(element => {
+                // Observe all sections including the narratives container
+                const sections = [
+                    document.getElementById('introduction'),
+                    document.getElementById('my_dataviz'),
+                    ...Array.from(document.querySelectorAll('.narrative')),
+                    document.getElementById('conclusion')
+                ];
+
+                sections.forEach(element => {
+                    if (element) {
                         observer.observe(element);
-                    });
+                    }
+                });
             }
 
-            static setupEventListeners() {
-                document.querySelectorAll('.toc-link').forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = link.getAttribute('href').slice(1);
-                        const targetElement = document.getElementById(targetId);
-                        if (targetElement) {
-                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                    });
-                });
+            static updateNestedLabel(parentId, subTopicTitle) {
+                // Remove any existing nested labels first
+                document.querySelectorAll('.nested-subtopic-label').forEach(el => el.remove());
+                
+                // Find the parent narrative link
+                const parentLink = document.querySelector(`.toc-link[href="#${parentId}"]`);
+                if (!parentLink) return;
+                
+                // Create and insert the nested label
+                const nestedLabel = document.createElement('li');
+                nestedLabel.className = 'toc-item nested-subtopic-label';
+                nestedLabel.innerHTML = `
+                    <a class="toc-link narrative-link active">
+                        ${subTopicTitle}
+                    </a>
+                `;
+                
+                // Insert after the parent link
+                const parentItem = parentLink.closest('.toc-item');
+                parentItem.insertAdjacentElement('afterend', nestedLabel);
+            }
+
+            static removeNestedLabel() {
+                document.querySelectorAll('.nested-subtopic-label').forEach(el => el.remove());
             }
         }
 
+        // Initialize the table of contents first
+        TableOfContents.initialize();
+
+        // Then fetch and process the data
         fetch('infegy_summary.json')
             .then(response => response.json())
             .then(jsonData => {
@@ -1150,205 +1253,384 @@
                 `;
                 document.getElementById("conclusion").innerHTML = parseMarkdown(jsonData.output.conclusion);
 
-                const narrativesContainer = document.getElementById("narratives");
+                // Sort narratives by distribution and limit to top 5
+                const sortedNarratives = jsonData.output.narratives
+                    .sort((a, b) => b.distribution - a.distribution)
+                    .slice(0, 5);
 
-                jsonData.output.narratives.forEach(narrative => {
-                    let narrativeDiv = NarrativeBuilder.createNarrative(narrative);
+                // Create narratives in the main content
+                const narrativesContainer = document.getElementById("narratives");
+                narrativesContainer.innerHTML = '';
+
+                // Add a wrapper div for each narrative to help with intersection observation
+                sortedNarratives.forEach(narrative => {
+                    const narrativeId = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
+                    const narrativeDiv = NarrativeBuilder.createNarrative(narrative);
+                    narrativeDiv.id = narrativeId;  // Ensure ID is set
+                    narrativeDiv.dataset.section = 'narrative';  // Add data attribute for identification
                     narrativesContainer.appendChild(narrativeDiv);
                 });
 
-                document.getElementById("conclusion").innerHTML = parseMarkdown(jsonData.output.conclusion);
+                // Add narratives to the submenu in the table of contents
+                const narrativeSubmenu = document.querySelector('.narrative-submenu');
+                if (narrativeSubmenu) {
+                    narrativeSubmenu.innerHTML = '';
+                    sortedNarratives.forEach(narrative => {
+                        const narrativeId = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
+                        const narrativeLi = document.createElement('li');
+                        narrativeLi.className = 'toc-item';
+                        narrativeLi.innerHTML = `
+                            <a href="#${narrativeId}" class="toc-link narrative-link">
+                                ${narrative.title}
+                            </a>
+                        `;
+                        narrativeSubmenu.appendChild(narrativeLi);
+                    });
+                }
 
-                // Create circle packing visualization
-                const width = 800, height = 300;
+                // Initialize the observer after all content is loaded
+                TableOfContents.initializeObserver();
+
+                // Modify the dimensions for better spacing
+                const width = 800;
+                const height = 800;  // Increased height
+
+                // Clear existing visualization
+                d3.select("#my_dataviz").html("");
+
+                // Update the SVG container height
                 const svg = d3.select("#my_dataviz")
                     .append("svg")
                     .attr("width", width)
-                    .attr("height", height);
+                    .attr("height", height)
+                    .append("g")
+                    .attr("transform", "translate(60,20)");  // Added top margin
 
-                // Filter out narratives with very small distribution values
-                let narratives = jsonData.output.narratives.filter(d => d.distribution > 0.001);
-
-                // Color palette for different sentiment ranges
-                const color = d3.scaleOrdinal()
-                    .range([
-                        '#22aaff', // Primary blue
-                        '#88ccff', // Light blue
-                        '#88dd11', // Green
-                        '#22dddd', // Teal
-                        '#ff3366', // Red
-                        '#ee44ee'  // Pink
-                    ]);
-
-                // Size scale for narratives
-                const size = d3.scaleLinear()
-                    .domain([0, d3.max(narratives, d => d.distribution)])
-                    .range([10, 100]);
-
-                // Create tooltip
-                // const Tooltip = d3.select("#my_dataviz")
-                //     .append("div")
-                //     .style("opacity", 0)
-                //     .attr("class", "tooltip");
-
-                // Tooltip event handlers
-                const mouseover = function(event, d) {}
-                const mousemove = function(event, d) {}
-                const mouseleave = function(event, d) {}
-
-                // Create a group for each node (circle + text)
-                const node = svg.append("g")
-                    .selectAll("g")
-                    .data(narratives)
-                    .join("g");
-
-                // Add circles to each group
-                const circles = node.append("circle")
-                    .attr("r", d => size(d.distribution))
-                    .attr("cx", 0)
-                    .attr("cy", 0)
-                    .style("fill", d => color(d.positivity))
-                    .style("fill-opacity", 0.85)
-                    .attr("stroke", "white")
-                    .style("stroke-width", 2)
-                    .on("mouseover", mouseover)
-                    .on("mousemove", mousemove)
-                    .on("mouseleave", mouseleave)
-                    .on("click", (event, d) => {
-                        const narrativeId = `narrative-${d.title.replace(/\s+/g, '-').toLowerCase()}`;
-                        const narrativeDiv = document.getElementById(narrativeId);
+                // Modify the createHierarchicalData function to properly handle the "Other" category
+                function createHierarchicalData(narratives) {
+                    // Sort narratives by distribution
+                    const sortedNarratives = narratives.sort((a, b) => b.distribution - a.distribution);
+                    
+                    // Take top 5 narratives (changed from 4)
+                    const topNarratives = sortedNarratives.slice(0, 5);
+                    const otherNarratives = sortedNarratives.slice(5);
+                    
+                    // For each top narrative, take only top 5 nested narratives and combine the rest
+                    const processNestedNarratives = (nestedArray) => {
+                        if (!nestedArray || !nestedArray.length) return [];
                         
-                        document.querySelectorAll('.narrative').forEach(div => {
-                            div.classList.remove('highlighted');
-                        });
+                        const sortedNested = nestedArray.sort((a, b) => b.distribution - a.distribution);
+                        const topNested = sortedNested.slice(0, 5).map(n => ({
+                            name: n.title,  // Map title to name for leaf nodes
+                            distribution: n.distribution,
+                            positivity: n.positivity
+                        }));
                         
-                        if (narrativeDiv) {
-                            narrativeDiv.classList.add('highlighted');
-                            narrativeDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    });
-
-                // Add text labels to each group
-                const labels = node.append("text")
-                    .attr("class", "circle-label")
-                    .each(function(d) {
-                        const radius = size(d.distribution);
-                        // Scale font size based on circle radius
-                        const fontSize = Math.max(10, Math.min(14, radius / 4));
-                        const lineHeight = fontSize * 1.2;
-                        const maxLines = Math.floor((radius * 1.6) / lineHeight);
-                        const maxWidth = radius * 1.6;
+                        const otherNested = sortedNested.slice(5);
                         
-                        let words = d.title.split(/\s+/);
-                        let lines = [];
-                        let currentLine = [];
-                        let currentWidth = 0;
-                        
-                        words.forEach(word => {
-                            const wordWidth = word.length * (fontSize * 0.6);
+                        if (otherNested.length > 0) {
+                            const otherNestedDist = otherNested.reduce((sum, n) => sum + n.distribution, 0);
+                            const otherNestedPos = otherNested.reduce((sum, n) => sum + n.positivity, 0) / otherNested.length;
                             
-                            if (currentWidth + wordWidth < maxWidth) {
-                                currentLine.push(word);
-                                currentWidth += wordWidth + (fontSize * 0.6);
-                            } else {
-                                if (currentLine.length > 0) {
-                                    lines.push(currentLine.join(' '));
-                                }
-                                currentLine = [word];
-                                currentWidth = wordWidth;
-                            }
-                        });
-                        
-                        if (currentLine.length > 0) {
-                            lines.push(currentLine.join(' '));
+                            return [...topNested, {
+                                name: "Other Sub-Topics",
+                                distribution: otherNestedDist,
+                                positivity: otherNestedPos
+                            }];
                         }
                         
-                        // Limit number of lines
-                        lines = lines.slice(0, maxLines);
-                        
-                        // Calculate vertical position for centering
-                        const totalHeight = lines.length * lineHeight;
-                        const startY = -(totalHeight / 2) + (lineHeight / 2);
-                        
-                        // Create tspan elements for each line
+                        return topNested;
+                    };
+                    
+                    return {
+                        name: "Topics",
+                        children: topNarratives.map(narrative => ({
+                            name: narrative.title,
+                            distribution: narrative.distribution,
+                            positivity: narrative.positivity,
+                            children: processNestedNarratives(narrative.nested_narratives)
+                        }))
+                    };
+                }
+
+                // Create hierarchical data structure with limited narratives
+                const hierarchicalData = createHierarchicalData(jsonData.output.narratives);
+
+                // Update cluster layout with adjusted spacing
+                const cluster = d3.cluster()
+                    .size([height - 100, width - 100])  // Keep the overall size
+                    .separation((a, b) => {
+                        // Increase separation between leaf nodes
+                        if (!a.children && !b.children) return 4;  // Increase this value for more spacing between leaf nodes
+                        // Keep default spacing for other nodes
+                        return a.parent === b.parent ? 1 : 1;
+                    });
+
+                // Create the root hierarchy
+                const root = d3.hierarchy(hierarchicalData, d => d.children);
+                cluster(root);
+
+                // Move the links selection before the nodes to ensure proper layering
+                const links = svg.selectAll('path')
+                    .data(root.descendants().slice(1))
+                    .join('path')
+                    .attr("class", "node-link")
+                    .lower()  // This ensures links are drawn below nodes
+                    .attr("d", d => {
+                        return "M" + d.y + "," + d.x
+                            + "C" + (d.parent.y + 50) + "," + d.x
+                            + " " + (d.parent.y + 150) + "," + d.parent.x
+                            + " " + d.parent.y + "," + d.parent.x;
+                    });
+
+                // Create node groups with modified hover effects
+                const nodes = svg.selectAll(".node")
+                    .data(root.descendants())
+                    .join("g")
+                    .attr("class", "node")
+                    .attr("transform", d => `translate(${d.y},${d.x})`)
+                    .on("mouseenter", (event, d) => {
+                        // Get specific path from hovered node to root
+                        let pathToRoot = [];
+                        let current = d;
+                        while (current) {
+                            pathToRoot.push(current);
+                            current = current.parent;
+                        }
+
+                        // Highlight only the specific links in the path with a more muted and transparent color
+                        links
+                            .style("stroke", link => {
+                                // Check if this link is part of the path to root
+                                return pathToRoot.includes(link) && pathToRoot.includes(link.parent)
+                                    ? "#a8c4e3"  // Muted blue
+                                    : "#e8eaf2";
+                            })
+                            .style("stroke-width", link => {
+                                return pathToRoot.includes(link) && pathToRoot.includes(link.parent)
+                                    ? 2.5 
+                                    : 1.5;
+                            })
+                            .style("opacity", link => {
+                                return pathToRoot.includes(link) && pathToRoot.includes(link.parent)
+                                    ? 0.6  // Increased transparency from 1.0 to 0.6
+                                    : 0.3;  // Increased transparency for non-highlighted paths
+                            });
+
+                        // Update circle highlight color to match
+                        nodes.selectAll("circle")
+                            .style("stroke", node => 
+                                pathToRoot.includes(node) 
+                                ? "#a8c4e3"  // Muted blue
+                                : "#fff")
+                            .style("stroke-width", node => 
+                                pathToRoot.includes(node) 
+                                ? 3 
+                                : 2)
+                            .style("opacity", node => 
+                                pathToRoot.includes(node) 
+                                ? 0.9  // Slightly reduced opacity for highlighted nodes
+                                : 0.7);
+
+                        // Keep text highlighting as is for legibility
+                        nodes.selectAll("text")
+                            .style("opacity", node => 
+                                pathToRoot.includes(node) 
+                                ? 1 
+                                : 0.5)
+                            .style("font-weight", node => 
+                                pathToRoot.includes(node) 
+                                ? "600" 
+                                : "400");
+                    })
+                    .on("mouseleave", () => {
+                        // Reset all styles
+                        links
+                            .style("stroke", "#e8eaf2")
+                            .style("stroke-width", 1.5)
+                            .style("opacity", 1);
+
+                        nodes.selectAll("circle")
+                            .style("stroke", "#fff")
+                            .style("stroke-width", 2)
+                            .style("opacity", 1);
+
+                        nodes.selectAll("text")
+                            .style("opacity", 1)
+                            .style("font-weight", d => 
+                                d.children || d.data.name === "Topics" 
+                                ? "600" 
+                                : "400");
+                    });
+
+                // Update the click handler for the dendrogram circles
+                nodes.append("circle")
+                    .attr("r", d => {
+                        if (d.data.name === "Topics") return 5;
+                        if (d.data.name === "Other Topics" || d.data.name === "Other Sub-Topics") {
+                            return Math.max(5, Math.min(15, d.data.distribution * 80));
+                        }
+                        return Math.max(5, Math.min(20, d.data.distribution * 100));
+                    })
+                    .style("fill", d => {
+                        // Use branded colors based on hierarchy level and position
+                        if (d.data.name === "Topics") return COLORS.primary;
+                        if (d.data.name === "Other Topics" || d.data.name === "Other Sub-Topics") {
+                            return COLORS.lightBlue;
+                        }
+                        // For parent nodes (main narratives)
+                        if (d.children) {
+                            const colors = [COLORS.primary, COLORS.green, COLORS.teal, COLORS.pink, COLORS.red];
+                            return colors[d.depth % colors.length];
+                        }
+                        // For leaf nodes (sub-narratives)
+                        const colors = [COLORS.primary, COLORS.lightBlue, COLORS.green, COLORS.teal, COLORS.pink, COLORS.red];
+                        return colors[d.parent.children.indexOf(d) % colors.length];
+                    })
+                    .attr("stroke", "#fff")
+                    .style("stroke-width", 2)
+                    .style("cursor", "pointer")
+                    .on("click", function(event, d) {
+                        // If this is a leaf node (no children)
+                        if (!d.children) {
+                            // Find the parent narrative's ID
+                            const parentNarrative = d.parent;
+                            if (!parentNarrative) return;
+                            
+                            const narrativeId = `narrative-${parentNarrative.data.name.replace(/\s+/g, '-').toLowerCase()}`;
+                            const narrativeSection = document.getElementById(narrativeId);
+                            
+                            if (narrativeSection) {
+                                // Remove highlighting from all narratives
+                                document.querySelectorAll('.narrative').forEach(n => n.classList.remove('highlighted'));
+                                
+                                // Highlight this narrative
+                                narrativeSection.classList.add('highlighted');
+                                
+                                // Find specifically the Sub-Topics section within the narrative
+                                const subTopicsSection = Array.from(narrativeSection.querySelectorAll('h3'))
+                                    .find(h3 => h3.textContent === 'Sub-Topics:');
+                                
+                                if (subTopicsSection) {
+                                    // Scroll to the Sub-Topics section
+                                    subTopicsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                                    // If this is not "Other Sub-Topics", find and click the corresponding circle
+                                    if (d.data.name !== "Other Sub-Topics") {
+                                        setTimeout(() => {
+                                            // Find the nested visualization and its circles
+                                            const nestedViz = narrativeSection.querySelector('.nested-viz');
+                                            if (nestedViz) {
+                                                const circles = nestedViz.querySelectorAll('circle');
+                                                circles.forEach(circle => {
+                                                    const circleData = d3.select(circle).datum();
+                                                    if (circleData.title === d.data.name) {
+                                                        // Reset all circles first
+                                                        d3.selectAll(nestedViz.querySelectorAll('circle'))
+                                                            .classed("active", false)
+                                                            .style("stroke", "white")
+                                                            .style("stroke-width", 2)
+                                                            .style("fill-opacity", 0.85);
+                                                        
+                                                        // Activate the matching circle
+                                                        d3.select(circle)
+                                                            .classed("active", true)
+                                                            .style("stroke", "#22aaff")
+                                                            .style("stroke-width", 3)
+                                                            .style("fill-opacity", 1);
+                                                        
+                                                        // Show the details
+                                                        const detailsContainer = narrativeSection.querySelector('.nested-narrative-details');
+                                                        if (detailsContainer) {
+                                                            detailsContainer.style.display = "block";
+                                                            // Add the parent narrative data to the circle data
+                                                            const parentData = {
+                                                                title: parentNarrative.data.name,
+                                                                key_terms: parentNarrative.data.key_terms || []
+                                                            };
+                                                            circleData.parent_narrative = parentData;
+                                                            detailsContainer.innerHTML = createNestedNarrativeDetails(circleData);
+                                                        }
+
+                                                        // Update the table of contents with the subtopic
+                                                        TableOfContents.updateNestedLabel(narrativeId, d.data.name);
+                                                    }
+                                                });
+                                            }
+                                        }, 500); // Wait for scroll to complete
+                                    }
+                                }
+                            }
+                        } else {
+                            // For parent nodes, just navigate to the narrative section
+                            const narrativeId = `narrative-${d.data.name.replace(/\s+/g, '-').toLowerCase()}`;
+                            const narrativeSection = document.getElementById(narrativeId);
+                            
+                            if (narrativeSection) {
+                                document.querySelectorAll('.narrative').forEach(n => n.classList.remove('highlighted'));
+                                narrativeSection.classList.add('highlighted');
+                                narrativeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
+                        }
+                    });
+
+                // Update the text labels with debugging and improved logic
+                nodes.append("text")
+                    .each(function(d) {
                         const text = d3.select(this);
-                        lines.forEach((line, i) => {
-                            text.append("tspan")
-                                .attr("x", 0)
-                                .attr("y", startY + (i * lineHeight))
-                                .style("font-size", `${fontSize}px`)
-                                .text(line);
+                        
+                        // Debug log to see what data we're getting
+                        console.log('Node data:', {
+                            name: d.data.name,
+                            isRoot: d.data.name === "Topics",
+                            hasChildren: !!d.children,
+                            depth: d.depth
                         });
+                        
+                        // Set font size based on hierarchy level
+                        const fontSize = d.data.name === "Topics" ? 14 :
+                                        d.children ? 13 : 11;
+                        
+                        // Position all labels to the left of nodes
+                        const xPos = -15;
+                        
+                        // Get the name, ensuring we have a value
+                        const name = d.data.name || "Unnamed Node";
+                        
+                        text.attr("x", xPos)
+                            .attr("y", 0)  // Center vertically
+                            .attr("text-anchor", "end")  // Right-justify all text
+                            .attr("dominant-baseline", "middle")  // Center vertically
+                            .style("font-size", `${fontSize}px`)
+                            .style("font-weight", d.children || d.data.name === "Topics" ? "600" : "400")
+                            .style("fill", "#445566")
+                            .style("font-family", "'Roboto', sans-serif")
+                            .text(name);  // Use the name we extracted above
+                            
+                        // Debug: Add a colored border to see text boundaries
+                        text.style("stroke", "none")
+                            .style("stroke-width", "1px");
                     });
 
-                // Create the simulation first
-                const simulation = d3.forceSimulation()
-                    .force("center", d3.forceCenter().x(width / 2).y(height / 2).strength(0.3))
-                    .force("charge", d3.forceManyBody()
-                        .strength(d => -10))
-                    .force("gravity", d3.forceManyBody()
-                        .strength(100))
-                    .force("collide", d3.forceCollide()
-                        .radius(d => size(d.distribution) + 1)
-                        .strength(0.8)
-                        .iterations(4))
-                    .velocityDecay(0.4)
-                    .alphaTarget(0.01)
-                    .alphaMin(0.001)
-                    .alphaDecay(0.04);
+                // Update the visualization instructions
+                const instructions = document.querySelector('.viz-instructions');
+                instructions.innerHTML = `
+                    <strong>Circle size</strong> represents topic distribution percentage
+                    <span>•</span>
+                    <strong>Click any circle</strong> to jump to its detailed analysis
+                `;
 
-                // Then update the tick function to properly position both circles and labels
-                simulation
-                    .nodes(narratives)
-                    .on("tick", function() {
-                        node.attr("transform", d => {
-                            const r = size(d.distribution);
-                            d.x = Math.max(r, Math.min(width - r, d.x));
-                            d.y = Math.max(r, Math.min(height - r, d.y));
-                            return `translate(${d.x},${d.y})`;
-                        });
-                    });
+                // Add a note about showing top narratives
+                const vizTitle = document.querySelector('.viz-title');
+                vizTitle.textContent = 'Topic Distribution Overview (Top 5 Narratives)';
 
-                // Update the drag functions
-                function dragstarted(event, d) {
-                    if (!event.active) simulation.alphaTarget(0.3).restart();
-                    d.fx = d.x;
-                    d.fy = d.y;
-                    // Show tooltip when starting drag
-                    // Tooltip.style("opacity", 1);
-                }
-
-                function dragged(event, d) {
-                    d.fx = event.x;
-                    d.fy = event.y;
-                    // Tooltip
-                    //     .html(`<strong>${d.title}</strong><br>` +
-                    //           `Distribution: ${(d.distribution * 100).toFixed(2)}%<br>` +
-                    //           `Sentiment: ${(d.positivity * 100).toFixed(1)}% positive<br>` +
-                    //           `Language: ${d.language}`)
-                    //     .style("left", (event.pageX - 2) + "px")
-                    //     .style("top", (event.pageY - 2) + "px");
-                }
-
-                function dragended(event, d) {
-                    if (!event.active) simulation.alphaTarget(0);
-                    d.fx = null;
-                    d.fy = null;
-                    // Hide tooltip when drag ends
-                    // Tooltip.style("opacity", 0);
-                }
-
-                // Update the drag behavior to include all functions
-                node.call(d3.drag()
-                    .on("start", dragstarted)
-                    .on("drag", dragged)
-                    .on("end", dragended));
-
-                // Create line graph right after circle packing
-                createLineGraph(jsonData);
-
-                // Initialize table of contents after content is loaded
-                TableOfContents.initialize();
+                // Add tooltip div for nested visualizations
+                const tooltip = d3.select("body")
+                    .append("div")
+                    .attr("class", "tooltip")
+                    .style("opacity", 0)
+                    .style("position", "absolute")
+                    .style("pointer-events", "none");
             })
             .catch(error => console.error('Error loading JSON:', error));
 
@@ -1394,6 +1676,7 @@
                     this.createStats(narrative),
                     this.createKeyTerms(narrative),
                     this.createDescription(narrative),
+                    narrative.nested_narratives?.length ? this.createNestedVisualization(narrative) : null,
                     this.createExamples(narrative),
                     this.createPersonas(narrative)
                 ];
@@ -1456,6 +1739,178 @@
                 return container;
             }
 
+            static createNestedVisualization(narrative) {
+                const container = document.createElement('div');
+                container.innerHTML = '<h3>Sub-Topics:</h3>';
+                
+                const vizContainer = utils.createElementWithClass('div', 'nested-viz');
+                vizContainer.style.width = '100%';
+                vizContainer.style.height = '300px'; // Match your height
+                container.appendChild(vizContainer);
+
+                // Create and add details container first
+                const detailsContainer = document.createElement('div');
+                detailsContainer.className = 'nested-narrative-details';
+                detailsContainer.style.display = 'none';
+                container.appendChild(detailsContainer);
+
+                // Create mini circle packing visualization
+                const width = vizContainer.clientWidth || 800;
+                const height = 300;
+                const svg = d3.select(vizContainer)
+                    .append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+                // Filter out very small narratives
+                let nestedNarratives = narrative.nested_narratives.filter(d => d.distribution > 0.001);
+
+                // Color scale for sentiment
+                const color = d3.scaleOrdinal()
+                    .range([
+                        '#22aaff', // Primary blue
+                        '#88ccff', // Light blue
+                        '#88dd11', // Green
+                        '#22dddd', // Teal
+                        '#ff3366', // Red
+                        '#ee44ee'  // Pink
+                    ]);
+
+                // Size scale for narratives
+                const size = d3.scaleLinear()
+                    .domain([0, d3.max(nestedNarratives, d => d.distribution)])
+                    .range([10, 100]);
+
+                // Create a group for each node (circle + text)
+                const node = svg.append("g")
+                    .selectAll("g")
+                    .data(nestedNarratives)
+                    .join("g");
+
+                // Add circles to each group with updated click handler
+                const circles = node.append("circle")
+                    .attr("r", d => size(d.distribution))
+                    .attr("cx", 0)
+                    .attr("cy", 0)
+                    .style("fill", d => color(d.positivity))
+                    .style("fill-opacity", 0.85)
+                    .attr("stroke", "white")
+                    .style("stroke-width", 2)
+                    .style("cursor", "pointer")
+                    .on("click", function(event, d) {
+                        const circle = d3.select(this);
+                        const isActive = circle.classed("active");
+                        
+                        // Reset all circles
+                        d3.selectAll(this.parentNode.parentNode.querySelectorAll('circle'))
+                            .classed("active", false)
+                            .style("stroke", "white")
+                            .style("stroke-width", 2)
+                            .style("fill-opacity", 0.85);
+                        
+                        if (!isActive) {
+                            // Add parent narrative reference to the data
+                            d.parent_narrative = narrative;
+                            
+                            // Activate clicked circle
+                            circle.classed("active", true)
+                                .style("stroke", "#22aaff")
+                                .style("stroke-width", 3)
+                                .style("fill-opacity", 1);
+                            
+                            // Show details without scrolling
+                            detailsContainer.style.display = "block";
+                            detailsContainer.innerHTML = createNestedNarrativeDetails(d);
+
+                            // Update the table of contents with the subtopic
+                            const narrativeId = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
+                            TableOfContents.updateNestedLabel(narrativeId, d.title);
+                        } else {
+                            // Hide details if clicking active circle
+                            detailsContainer.style.display = "none";
+                            // Remove the nested label
+                            TableOfContents.removeNestedLabel();
+                        }
+                    });
+
+                // Add text labels with the same wrapping logic as your code
+                const labels = node.append("text")
+                    .attr("class", "circle-label")
+                    .each(function(d) {
+                        const radius = size(d.distribution);
+                        const fontSize = Math.max(10, Math.min(14, radius / 4));
+                        const lineHeight = fontSize * 1.2;
+                        const maxLines = Math.floor((radius * 1.6) / lineHeight);
+                        const maxWidth = radius * 1.6;
+                        
+                        let words = d.title.split(/\s+/);
+                        let lines = [];
+                        let currentLine = [];
+                        let currentWidth = 0;
+                        
+                        words.forEach(word => {
+                            const wordWidth = word.length * (fontSize * 0.6);
+                            
+                            if (currentWidth + wordWidth < maxWidth) {
+                                currentLine.push(word);
+                                currentWidth += wordWidth + (fontSize * 0.6);
+                            } else {
+                                if (currentLine.length > 0) {
+                                    lines.push(currentLine.join(' '));
+                                }
+                                currentLine = [word];
+                                currentWidth = wordWidth;
+                            }
+                        });
+                        
+                        if (currentLine.length > 0) {
+                            lines.push(currentLine.join(' '));
+                        }
+                        
+                        lines = lines.slice(0, maxLines);
+                        
+                        const totalHeight = lines.length * lineHeight;
+                        const startY = -(totalHeight / 2) + (lineHeight / 2);
+                        
+                        const text = d3.select(this);
+                        lines.forEach((line, i) => {
+                            text.append("tspan")
+                                .attr("x", 0)
+                                .attr("y", startY + (i * lineHeight))
+                                .style("font-size", `${fontSize}px`)
+                                .text(line);
+                        });
+                    });
+
+                // Create force simulation
+                const simulation = d3.forceSimulation()
+                    .force("center", d3.forceCenter().x(width / 2).y(height / 2).strength(0.3))
+                    .force("charge", d3.forceManyBody().strength(d => -10))
+                    .force("gravity", d3.forceManyBody().strength(100))
+                    .force("collide", d3.forceCollide()
+                        .radius(d => size(d.distribution) + 1)
+                        .strength(0.8)
+                        .iterations(4))
+                    .velocityDecay(0.4)
+                    .alphaTarget(0.01)
+                    .alphaMin(0.001)
+                    .alphaDecay(0.04);
+
+                // Update positions on tick
+                simulation
+                    .nodes(nestedNarratives)
+                    .on("tick", function() {
+                        node.attr("transform", d => {
+                            const r = size(d.distribution);
+                            d.x = Math.max(r, Math.min(width - r, d.x));
+                            d.y = Math.max(r, Math.min(height - r, d.y));
+                            return `translate(${d.x},${d.y})`;
+                        });
+                    });
+
+                return container;
+            }
+
             static createExamples(narrative) {
                 if (!narrative.examples || !narrative.examples.length) {
                     return null;
@@ -1493,6 +1948,72 @@
                 container.appendChild(ul);
                 return container;
             }
+        }
+
+        // Add this function before creating the circles
+        function createNestedNarrativeDetails(nestedNarrative) {
+            // Calculate estimated post count based on parent narrative's total posts
+            const parentTotalPosts = nestedNarrative.parent_narrative.key_terms.reduce((sum, term) => 
+                sum + (term.est_total_count || 0), 0);
+            const estimatedPosts = Math.round(parentTotalPosts * nestedNarrative.distribution);
+
+            return `
+                <div class="nested-narrative" style="margin-top: 20px; padding: 20px; border: 1px solid #e8eaf2; border-radius: 8px; background: #ffffff;">
+                    <h3 style="color: #223354; margin-bottom: 15px;">${nestedNarrative.title}</h3>
+                    
+                    <div class="narrative-stats" style="margin-bottom: 20px;">
+                        <div class="stat-item sentiment-stat">
+                            <div class="stat-label">Sentiment Score</div>
+                            <div class="stat-value">${(nestedNarrative.positivity * 100).toFixed(1)}%</div>
+                        </div>
+                        <div class="stat-item distribution-stat">
+                            <div class="stat-label">Topic Distribution</div>
+                            <div class="stat-value">${(nestedNarrative.distribution * 100).toFixed(1)}%</div>
+                        </div>
+                        <div class="stat-item volume-stat">
+                            <div class="stat-label">Estimated Posts</div>
+                            <div class="stat-value">${utils.formatNumber(estimatedPosts)}</div>
+                        </div>
+                        <div class="stat-item language-stat">
+                            <div class="stat-label">Language</div>
+                            <div class="stat-value">${utils.getLanguageName(nestedNarrative.language || 'en')}</div>
+                        </div>
+                    </div>
+
+                    ${nestedNarrative.key_terms ? `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #445566; margin-bottom: 10px;">Key Terms:</h4>
+                            <ul class="key-terms">
+                                ${nestedNarrative.key_terms.slice(0, 5).map(term => `
+                                    <li class="${term.positivity >= 0.5 ? 'positive' : 'negative'}">
+                                        ${term.label}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+
+                    ${nestedNarrative.description ? `
+                        <div style="margin-bottom: 20px;">
+                            <h4 style="color: #445566; margin-bottom: 10px;">Description:</h4>
+                            <p style="color: #445566; line-height: 1.6;">${utils.parseMarkdown(nestedNarrative.description)}</p>
+                        </div>
+                    ` : ''}
+
+                    ${nestedNarrative.examples?.length ? `
+                        <div>
+                            <h4 style="color: #445566; margin-bottom: 10px;">Example Posts:</h4>
+                            <div class="example-posts">
+                                ${nestedNarrative.examples.slice(0, 2).map(example => `
+                                    <div class="example-post" style="background: #f3f4f6; border-left: 3px solid #22aaff;">
+                                        ${utils.parseMarkdown(typeof example === 'object' ? example.text || example.content : example)}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : ''}
+                </div>
+            `;
         }
     </script>
 </body>
