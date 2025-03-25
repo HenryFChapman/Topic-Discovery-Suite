@@ -120,10 +120,6 @@
         .narrative:hover {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
-        .narrative.highlighted {
-            border-color: #22aaff;
-            box-shadow: 0 2px 12px rgba(34, 170, 255, 0.1);
-        }
         .section-header {
             position: relative;
             padding: 15px 0 10px 0;
@@ -172,24 +168,24 @@
 
         .narrative-stats {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            gap: 15px;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            gap: 10px;
             margin: 0 0 25px 0;
             font-size: 0.9em;
             position: relative;
         }
         .stat-item {
             position: relative;
-            padding: 12px 16px;
+            padding: 12px 12px;
             border-radius: 8px;
             color: #445566;
             font-weight: 500;
             background: white;
             border: 1px solid #e8eaf2;
-            min-width: 140px;
+            min-width: 120px;
             flex: 1;
-            max-width: 200px;
+            max-width: none;
         }
         .stat-item::before {
             content: '';
@@ -596,8 +592,9 @@
             border-radius: 8px;
             border: 1px solid #e8eaf2;
             padding: 20px;
-            margin-bottom: 20px;
+            margin: 20px 0;
             overflow: visible;
+            box-sizing: border-box;
         }
 
         .nested-viz .tooltip {
@@ -636,6 +633,7 @@
         .nested-viz text {
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
+            pointer-events: none;
         }
 
         .node-link {
@@ -685,6 +683,10 @@
         .nested-subtopic-label .toc-link.active {
             background: #e8f5ff;
         }
+
+        .node {
+            pointer-events: all;
+        }
     </style>
 </head>
 <body>
@@ -717,7 +719,7 @@
 
             <div id="introduction" class="highlight-text"></div>
             
-            <div class="section-header">
+            <div class="section-header" id="overview">
                 <h2>Overview and Topic Distribution</h2>
             </div>
         <div class="circle-packing">
@@ -1114,7 +1116,7 @@
             static initialize() {
                 const sections = [
                     { id: 'introduction', label: 'Introduction' },
-                    { id: 'my_dataviz', label: 'Topic Distribution' },
+                    { id: 'overview', label: 'Topic Distribution' },
                     { type: 'narratives', label: 'Narratives' },
                     { id: 'conclusion', label: 'Key Findings' }
                 ];
@@ -1175,10 +1177,10 @@
                     rootMargin: '-10% 0px -70% 0px'
                 });
 
-                // Observe all sections including the narratives container
+                // Update the sections to observe, replacing my_dataviz with overview
                 const sections = [
                     document.getElementById('introduction'),
-                    document.getElementById('my_dataviz'),
+                    document.getElementById('overview'),  // Changed from my_dataviz
                     ...Array.from(document.querySelectorAll('.narrative')),
                     document.getElementById('conclusion')
                 ];
@@ -1491,7 +1493,6 @@
                     .style("stroke-width", 2)
                     .style("cursor", "pointer")
                     .on("click", function(event, d) {
-                        // If this is a leaf node (no children)
                         if (!d.children) {
                             // Find the parent narrative's ID
                             const parentNarrative = d.parent;
@@ -1501,12 +1502,6 @@
                             const narrativeSection = document.getElementById(narrativeId);
                             
                             if (narrativeSection) {
-                                // Remove highlighting from all narratives
-                                document.querySelectorAll('.narrative').forEach(n => n.classList.remove('highlighted'));
-                                
-                                // Highlight this narrative
-                                narrativeSection.classList.add('highlighted');
-                                
                                 // Find specifically the Sub-Topics section within the narrative
                                 const subTopicsSection = Array.from(narrativeSection.querySelectorAll('h3'))
                                     .find(h3 => h3.textContent === 'Sub-Topics:');
@@ -1543,12 +1538,12 @@
                                                         const detailsContainer = narrativeSection.querySelector('.nested-narrative-details');
                                                         if (detailsContainer) {
                                                             detailsContainer.style.display = "block";
+                                                            
+                                                            // Get the full parent narrative data from the narrative section
+                                                            const parentNarrativeData = narrativeSection.__data__;
                                                             // Add the parent narrative data to the circle data
-                                                            const parentData = {
-                                                                title: parentNarrative.data.name,
-                                                                key_terms: parentNarrative.data.key_terms || []
-                                                            };
-                                                            circleData.parent_narrative = parentData;
+                                                            circleData.parent_narrative = parentNarrativeData;
+                                                            
                                                             detailsContainer.innerHTML = createNestedNarrativeDetails(circleData);
                                                         }
 
@@ -1567,8 +1562,6 @@
                             const narrativeSection = document.getElementById(narrativeId);
                             
                             if (narrativeSection) {
-                                document.querySelectorAll('.narrative').forEach(n => n.classList.remove('highlighted'));
-                                narrativeSection.classList.add('highlighted');
                                 narrativeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }
                         }
@@ -1670,7 +1663,8 @@
             static createNarrative(narrative) {
                 const narrativeDiv = utils.createElementWithClass('div', 'narrative');
                 narrativeDiv.id = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
-
+                narrativeDiv.__data__ = narrative;
+                
                 const components = [
                     this.createHeader(narrative),
                     this.createStats(narrative),
@@ -1743,170 +1737,177 @@
                 const container = document.createElement('div');
                 container.innerHTML = '<h3>Sub-Topics:</h3>';
                 
+                // Create viz container first
                 const vizContainer = utils.createElementWithClass('div', 'nested-viz');
-                vizContainer.style.width = '100%';
-                vizContainer.style.height = '300px'; // Match your height
                 container.appendChild(vizContainer);
-
-                // Create and add details container first
+                
+                // Create details container after the visualization
                 const detailsContainer = document.createElement('div');
                 detailsContainer.className = 'nested-narrative-details';
                 detailsContainer.style.display = 'none';
                 container.appendChild(detailsContainer);
 
-                // Create mini circle packing visualization
-                const width = vizContainer.clientWidth || 800;
-                const height = 300;
-                const svg = d3.select(vizContainer)
-                    .append("svg")
-                    .attr("width", width)
-                    .attr("height", height);
+                // Get narrative ID for table of contents updates
+                const narrativeId = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
 
                 // Filter out very small narratives
                 let nestedNarratives = narrative.nested_narratives.filter(d => d.distribution > 0.001);
 
-                // Color scale for sentiment
-                const color = d3.scaleOrdinal()
-                    .range([
-                        '#22aaff', // Primary blue
-                        '#88ccff', // Light blue
-                        '#88dd11', // Green
-                        '#22dddd', // Teal
-                        '#ff3366', // Red
-                        '#ee44ee'  // Pink
-                    ]);
+                // Create SVG after the container is added to the DOM
+                requestAnimationFrame(() => {
+                    // Get actual container width
+                    const containerWidth = vizContainer.clientWidth || 800;
+                    const width = Math.max(containerWidth - 40, 400); // Ensure minimum width of 400px
+                    const height = 350;
 
-                // Size scale for narratives
-                const size = d3.scaleLinear()
-                    .domain([0, d3.max(nestedNarratives, d => d.distribution)])
-                    .range([10, 100]);
+                    const svg = d3.select(vizContainer)
+                        .append("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .attr("viewBox", `0 0 ${width} ${height}`);
 
-                // Create a group for each node (circle + text)
-                const node = svg.append("g")
-                    .selectAll("g")
-                    .data(nestedNarratives)
-                    .join("g");
+                    // Color scale for sentiment
+                    const color = d3.scaleOrdinal()
+                        .range([
+                            '#22aaff', // Primary blue
+                            '#88ccff', // Light blue
+                            '#88dd11', // Green
+                            '#22dddd', // Teal
+                            '#ff3366', // Red
+                            '#ee44ee'  // Pink
+                        ]);
 
-                // Add circles to each group with updated click handler
-                const circles = node.append("circle")
-                    .attr("r", d => size(d.distribution))
-                    .attr("cx", 0)
-                    .attr("cy", 0)
-                    .style("fill", d => color(d.positivity))
-                    .style("fill-opacity", 0.85)
-                    .attr("stroke", "white")
-                    .style("stroke-width", 2)
-                    .style("cursor", "pointer")
-                    .on("click", function(event, d) {
-                        const circle = d3.select(this);
-                        const isActive = circle.classed("active");
-                        
-                        // Reset all circles
-                        d3.selectAll(this.parentNode.parentNode.querySelectorAll('circle'))
-                            .classed("active", false)
-                            .style("stroke", "white")
-                            .style("stroke-width", 2)
-                            .style("fill-opacity", 0.85);
-                        
-                        if (!isActive) {
-                            // Add parent narrative reference to the data
-                            d.parent_narrative = narrative;
+                    // Size scale for narratives
+                    const size = d3.scaleLinear()
+                        .domain([0, d3.max(nestedNarratives, d => d.distribution)])
+                        .range([10, 100]);
+
+                    // Create a group for each node (circle + text)
+                    const node = svg.append("g")
+                        .selectAll("g")
+                        .data(nestedNarratives)
+                        .join("g");
+
+                    // Add circles to each group with updated click handler
+                    const circles = node.append("circle")
+                        .attr("r", d => size(d.distribution))
+                        .attr("cx", 0)
+                        .attr("cy", 0)
+                        .style("fill", d => color(d.positivity))
+                        .style("fill-opacity", 0.85)
+                        .attr("stroke", "white")
+                        .style("stroke-width", 2)
+                        .style("cursor", "pointer")
+                        .on("click", function(event, d) {
+                            const circle = d3.select(this);
+                            const isActive = circle.classed("active");
                             
-                            // Activate clicked circle
-                            circle.classed("active", true)
-                                .style("stroke", "#22aaff")
-                                .style("stroke-width", 3)
-                                .style("fill-opacity", 1);
+                            // Reset all circles
+                            d3.selectAll(this.parentNode.parentNode.querySelectorAll('circle'))
+                                .classed("active", false)
+                                .style("stroke", "white")
+                                .style("stroke-width", 2)
+                                .style("fill-opacity", 0.85);
                             
-                            // Show details without scrolling
-                            detailsContainer.style.display = "block";
-                            detailsContainer.innerHTML = createNestedNarrativeDetails(d);
+                            if (!isActive) {
+                                // Add parent narrative reference to the data
+                                d.parent_narrative = narrative;
+                                
+                                // Activate clicked circle
+                                circle.classed("active", true)
+                                    .style("stroke", "#22aaff")
+                                    .style("stroke-width", 3)
+                                    .style("fill-opacity", 1);
+                                
+                                // Show details without scrolling
+                                detailsContainer.style.display = "block";
+                                detailsContainer.innerHTML = createNestedNarrativeDetails(d);
 
-                            // Update the table of contents with the subtopic
-                            const narrativeId = `narrative-${narrative.title.replace(/\s+/g, '-').toLowerCase()}`;
-                            TableOfContents.updateNestedLabel(narrativeId, d.title);
-                        } else {
-                            // Hide details if clicking active circle
-                            detailsContainer.style.display = "none";
-                            // Remove the nested label
-                            TableOfContents.removeNestedLabel();
-                        }
-                    });
-
-                // Add text labels with the same wrapping logic as your code
-                const labels = node.append("text")
-                    .attr("class", "circle-label")
-                    .each(function(d) {
-                        const radius = size(d.distribution);
-                        const fontSize = Math.max(10, Math.min(14, radius / 4));
-                        const lineHeight = fontSize * 1.2;
-                        const maxLines = Math.floor((radius * 1.6) / lineHeight);
-                        const maxWidth = radius * 1.6;
-                        
-                        let words = d.title.split(/\s+/);
-                        let lines = [];
-                        let currentLine = [];
-                        let currentWidth = 0;
-                        
-                        words.forEach(word => {
-                            const wordWidth = word.length * (fontSize * 0.6);
-                            
-                            if (currentWidth + wordWidth < maxWidth) {
-                                currentLine.push(word);
-                                currentWidth += wordWidth + (fontSize * 0.6);
+                                // Update the table of contents with the subtopic
+                                TableOfContents.updateNestedLabel(narrativeId, d.title);
                             } else {
-                                if (currentLine.length > 0) {
-                                    lines.push(currentLine.join(' '));
-                                }
-                                currentLine = [word];
-                                currentWidth = wordWidth;
+                                // Hide details if clicking active circle
+                                detailsContainer.style.display = "none";
+                                // Remove the nested label
+                                TableOfContents.removeNestedLabel();
                             }
                         });
-                        
-                        if (currentLine.length > 0) {
-                            lines.push(currentLine.join(' '));
-                        }
-                        
-                        lines = lines.slice(0, maxLines);
-                        
-                        const totalHeight = lines.length * lineHeight;
-                        const startY = -(totalHeight / 2) + (lineHeight / 2);
-                        
-                        const text = d3.select(this);
-                        lines.forEach((line, i) => {
-                            text.append("tspan")
-                                .attr("x", 0)
-                                .attr("y", startY + (i * lineHeight))
-                                .style("font-size", `${fontSize}px`)
-                                .text(line);
-                        });
-                    });
 
-                // Create force simulation
-                const simulation = d3.forceSimulation()
-                    .force("center", d3.forceCenter().x(width / 2).y(height / 2).strength(0.3))
-                    .force("charge", d3.forceManyBody().strength(d => -10))
-                    .force("gravity", d3.forceManyBody().strength(100))
-                    .force("collide", d3.forceCollide()
-                        .radius(d => size(d.distribution) + 1)
-                        .strength(0.8)
-                        .iterations(4))
-                    .velocityDecay(0.4)
-                    .alphaTarget(0.01)
-                    .alphaMin(0.001)
-                    .alphaDecay(0.04);
-
-                // Update positions on tick
-                simulation
-                    .nodes(nestedNarratives)
-                    .on("tick", function() {
-                        node.attr("transform", d => {
-                            const r = size(d.distribution);
-                            d.x = Math.max(r, Math.min(width - r, d.x));
-                            d.y = Math.max(r, Math.min(height - r, d.y));
-                            return `translate(${d.x},${d.y})`;
+                    // Add text labels with the same wrapping logic as your code
+                    const labels = node.append("text")
+                        .attr("class", "circle-label")
+                        .each(function(d) {
+                            const radius = size(d.distribution);
+                            const fontSize = Math.max(10, Math.min(14, radius / 4));
+                            const lineHeight = fontSize * 1.2;
+                            const maxLines = Math.floor((radius * 1.6) / lineHeight);
+                            const maxWidth = radius * 1.6;
+                            
+                            let words = d.title.split(/\s+/);
+                            let lines = [];
+                            let currentLine = [];
+                            let currentWidth = 0;
+                            
+                            words.forEach(word => {
+                                const wordWidth = word.length * (fontSize * 0.6);
+                                
+                                if (currentWidth + wordWidth < maxWidth) {
+                                    currentLine.push(word);
+                                    currentWidth += wordWidth + (fontSize * 0.6);
+                                } else {
+                                    if (currentLine.length > 0) {
+                                        lines.push(currentLine.join(' '));
+                                    }
+                                    currentLine = [word];
+                                    currentWidth = wordWidth;
+                                }
+                            });
+                            
+                            if (currentLine.length > 0) {
+                                lines.push(currentLine.join(' '));
+                            }
+                            
+                            lines = lines.slice(0, maxLines);
+                            
+                            const totalHeight = lines.length * lineHeight;
+                            const startY = -(totalHeight / 2) + (lineHeight / 2);
+                            
+                            const text = d3.select(this);
+                            lines.forEach((line, i) => {
+                                text.append("tspan")
+                                    .attr("x", 0)
+                                    .attr("y", startY + (i * lineHeight))
+                                    .style("font-size", `${fontSize}px`)
+                                    .text(line);
+                            });
                         });
-                    });
+
+                    // Create force simulation
+                    const simulation = d3.forceSimulation()
+                        .force("center", d3.forceCenter().x(width / 2).y(height / 2).strength(0.3))
+                        .force("charge", d3.forceManyBody().strength(d => -10))
+                        .force("gravity", d3.forceManyBody().strength(100))
+                        .force("collide", d3.forceCollide()
+                            .radius(d => size(d.distribution) + 1)
+                            .strength(0.8)
+                            .iterations(4))
+                        .velocityDecay(0.4)
+                        .alphaTarget(0.01)
+                        .alphaMin(0.001)
+                        .alphaDecay(0.04);
+
+                    // Update positions on tick
+                    simulation
+                        .nodes(nestedNarratives)
+                        .on("tick", function() {
+                            node.attr("transform", d => {
+                                const r = size(d.distribution);
+                                d.x = Math.max(r, Math.min(width - r, d.x));
+                                d.y = Math.max(r, Math.min(height - r, d.y));
+                                return `translate(${d.x},${d.y})`;
+                            });
+                        });
+                });
 
                 return container;
             }
